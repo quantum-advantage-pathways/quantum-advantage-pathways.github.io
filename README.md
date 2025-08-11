@@ -17,6 +17,16 @@ The website is hosted on GitHub Pages and can be accessed at:
 
 [https://quantum-advantage-pathways.github.io/](https://quantum-advantage-pathways.github.io/)
 
+## Running Locally
+
+To run the website on your local machine, you can use a simple HTTP server. If you have Node.js installed, you can use the `serve` package:
+
+```bash
+npx serve
+```
+
+This will start a local server and provide you with a URL to view the website in your browser.
+
 ## Contributing
 
 Contributions to the project are welcome. Please feel free to open an issue or submit a pull request.
