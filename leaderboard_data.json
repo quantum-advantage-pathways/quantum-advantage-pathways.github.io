@@ -1,4 +1,11 @@
-[
+{
+  "stats": {
+    "activeExperiments": 15,
+    "researchInstitutions": 8,
+    "maxQubitsTeated": 53,
+    "bestVerificationScore": "100%"
+  },
+  "leaderboard": [
   {
     "Rank": "1",
     "Circuit Size": "53Q | HH\n1512 Gates",
@@ -90,3 +97,4 @@
     "Method": "Monte Carlo + ML"
   }
 ]
+}

@@ -331,21 +331,10 @@
                             <text x="400" y="395" class="axis-label" text-anchor="middle">Time (minutes)</text>
                             <text x="25" y="200" class="axis-label" text-anchor="middle" transform="rotate(-90 25 200)">Score</text>
                             
-                            <!-- Data points -->
-                            <!-- Quantum points (circles) -->
-                            <circle cx="85" cy="70" r="8" class="quantum-point" />   <!-- QQQ1: 20 sec, 100% -->
-                            <circle cx="105" cy="70" r="8" class="quantum-point" />  <!-- QQQ2: 5 min, 100% -->
-                            <circle cx="88" cy="70" r="8" class="quantum-point" />   <!-- QQQ3: 45 sec, 100% -->
-                            
-                            <!-- Classical points (Square marks) -->
-                            <rect x="102" y="150" width="16" height="16" fill="#9B5CFF" class="classical-point"/>  <!-- 3 min, 85% -->
-                            <rect x="155" y="102" width="16" height="16" fill="#9B5CFF" class="classical-point"/>  <!-- 15 min, 95% -->
-                            <rect x="235" y="134" width="16" height="16" fill="#9B5CFF" class="classical-point"/>  <!-- 30 min, 87% -->
-                            <rect x="95" y="166" width="16" height="16" fill="#9B5CFF" class="classical-point"/>   <!-- 2 min, 82% -->
-                            <rect x="540" y="86" width="16" height="16" fill="#9B5CFF" class="classical-point"/>   <!-- 80 min, 98% -->
-                            <rect x="425" y="118" width="16" height="16" fill="#9B5CFF" class="classical-point"/>  <!-- 60 min, 92% -->
-                            <rect x="655" y="150" width="16" height="16" fill="#9B5CFF" class="classical-point"/>  <!-- 100 min, 85% -->
-                            <rect x="310" y="134" width="16" height="16" fill="#9B5CFF" class="classical-point"/>  <!-- 40 min, 87% -->
+                            <!-- Data points container - will be populated dynamically -->
+                            <g id="chart-data-points">
+                                <!-- Data points will be loaded dynamically -->
+                            </g>
                         </svg>
                     </div>
                     <div class="legend">
@@ -360,23 +349,8 @@
                     </div>
                 </div>
                 
-                <div class="leaderboard-stats">
-                    <div class="stat-card">
-                        <div class="stat-number">15</div>
-                        <div class="stat-label">Active Experiments</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">8</div>
-                        <div class="stat-label">Research Institutions</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">53</div>
-                        <div class="stat-label">Max Qubits Tested</div>
-                    </div>
-                    <div class="stat-card">
-                        <div class="stat-number">100%</div>
-                        <div class="stat-label">Best Verification Score</div>
-                    </div>
+                <div class="leaderboard-stats" id="stats-container">
+                    <!-- Stats will be loaded dynamically -->
                 </div>
 
                 <h2>Current Leaderboard</h2>
@@ -395,97 +369,8 @@
                             <th>Method</th>
                         </tr>
                     </thead>
-                    <tbody>
-                        <tr>
-                            <td><span class="rank-badge rank-1">1</span></td>
-                            <td class="circuit-size">53Q | HH<br>1512 Gates</td>
-                            <td>5 min</td>
-                            <td>100%</td>
-                            <td class="hardware-quantum">QQQ1</td>
-                            <td class="hardware-classical">GPU</td>
-                            <td class="institution">XXXA</td>
-                            <td class="method">Quantum + Clustering</td>
-                        </tr>
-                        <tr>
-                            <td><span class="rank-badge rank-2">2</span></td>
-                            <td class="circuit-size">53Q | HH<br>1512 Gates</td>
-                            <td>12 min</td>
-                            <td>100%</td>
-                            <td class="hardware-quantum">-</td>
-                            <td class="hardware-classical">GPU</td>
-                            <td class="institution">XXXB</td>
-                            <td class="method">Belief Propagation</td>
-                        </tr>
-                        <tr>
-                            <td><span class="rank-badge rank-3">3</span></td>
-                            <td class="circuit-size">53Q | HH<br>1512 Gates</td>
-                            <td>18 min</td>
-                            <td>100%</td>
-                            <td class="hardware-quantum">QQQ2</td>
-                            <td class="hardware-classical">CPU</td>
-                            <td class="institution">XXXA</td>
-                            <td class="method">Quantum + Clustering</td>
-                        </tr>
-                        <tr>
-                            <td><span class="rank-badge rank-other">4</span></td>
-                            <td class="circuit-size">45Q | HH<br>1275 Gates</td>
-                            <td>35 min</td>
-                            <td>100%</td>
-                            <td class="hardware-quantum">-</td>
-                            <td class="hardware-classical">GPU</td>
-                            <td class="institution">XXXC</td>
-                            <td class="method">MPS + Clustering</td>
-                        </tr>
-                        <tr>
-                            <td><span class="rank-badge rank-other">5</span></td>
-                            <td class="circuit-size">53Q | HH<br>1512 Gates</td>
-                            <td>1h 25min</td>
-                            <td>100%</td>
-                            <td class="hardware-quantum">-</td>
-                            <td class="hardware-classical">GPU</td>
-                            <td class="institution">XXXD</td>
-                            <td class="method">MPS + Clustering</td>
-                        </tr>
-                        <tr>
-                            <td><span class="rank-badge rank-other">6</span></td>
-                            <td class="circuit-size">45Q | HH<br>1275 Gates</td>
-                            <td>28 min</td>
-                            <td>87%</td>
-                            <td class="hardware-quantum">-</td>
-                            <td class="hardware-classical">GPU</td>
-                            <td class="institution">XXXE</td>
-                            <td class="method">AI Enhanced</td>
-                        </tr>
-                        <tr>
-                            <td><span class="rank-badge rank-other">7</span></td>
-                            <td class="circuit-size">40Q | HH<br>1140 Gates</td>
-                            <td>8 min</td>
-                            <td>100%</td>
-                            <td class="hardware-quantum">QQQ3</td>
-                            <td class="hardware-classical">-</td>
-                            <td class="institution">XXXF</td>
-                            <td class="method">Trapped Ion + VQE</td>
-                        </tr>
-                        <tr>
-                            <td><span class="rank-badge rank-other">8</span></td>
-                            <td class="circuit-size">35Q | HH<br>995 Gates</td>
-                            <td>1h 45min</td>
-                            <td>100%</td>
-                            <td class="hardware-quantum">-</td>
-                            <td class="hardware-classical">TPU</td>
-                            <td class="institution">XXXC</td>
-                            <td class="method">Tensor Networks</td>
-                        </tr>
-                        <tr>
-                            <td><span class="rank-badge rank-other">9</span></td>
-                            <td class="circuit-size">30Q | HH<br>855 Gates</td>
-                            <td>2h 0min</td>
-                            <td>92%</td>
-                            <td class="hardware-quantum">-</td>
-                            <td class="hardware-classical">CPU Cluster</td>
-                            <td class="institution">XXXG</td>
-                            <td class="method">Monte Carlo + ML</td>
-                        </tr>
+                    <tbody id="leaderboard-tbody">
+                        <!-- Leaderboard data will be loaded dynamically -->
                     </tbody>
                 </table>
             </div>
@@ -595,5 +480,169 @@
             <p>&copy; 2024 Quantum Advantage Framework. Peak Circuits Leaderboard - Live Results</p>
         </div>
     </footer>
+
+    <script>
+        // Load leaderboard data from JSON
+        async function loadLeaderboardData() {
+            try {
+                const response = await fetch('../../leaderboard_data.json');
+                const data = await response.json();
+                
+                // Populate stats
+                populateStats(data.stats);
+                
+                // Populate leaderboard table
+                populateLeaderboard(data.leaderboard);
+                
+                // Populate performance chart
+                populatePerformanceChart(data.leaderboard);
+            } catch (error) {
+                console.error('Error loading leaderboard data:', error);
+                showErrorMessage();
+            }
+        }
+
+        function populateStats(stats) {
+            const statsContainer = document.getElementById('stats-container');
+            statsContainer.innerHTML = `
+                <div class="stat-card">
+                    <div class="stat-number">${stats.activeExperiments}</div>
+                    <div class="stat-label">Active Experiments</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${stats.researchInstitutions}</div>
+                    <div class="stat-label">Research Institutions</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${stats.maxQubitsTeated}</div>
+                    <div class="stat-label">Max Qubits Tested</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">${stats.bestVerificationScore}</div>
+                    <div class="stat-label">Best Verification Score</div>
+                </div>
+            `;
+        }
+
+        function populateLeaderboard(leaderboard) {
+            const tbody = document.getElementById('leaderboard-tbody');
+            
+            tbody.innerHTML = leaderboard.map(entry => {
+                const rank = parseInt(entry.Rank);
+                const rankClass = rank <= 3 ? `rank-${rank}` : 'rank-other';
+                
+                // Parse circuit size and gates
+                const circuitParts = entry['Circuit Size'].split('\n');
+                const circuitSize = circuitParts[0];
+                const gates = circuitParts[1];
+                
+                // Determine hardware classes
+                const quantumHardwareClass = entry['Quantum Hardware'] !== '-' ? 'hardware-quantum' : 'hardware-classical';
+                const classicalHardwareClass = 'hardware-classical';
+                
+                // Determine score class
+                const scoreValue = parseInt(entry.Score);
+                const scoreClass = scoreValue === 100 ? 'score-100' : 'score-partial';
+                
+                return `
+                    <tr>
+                        <td><span class="rank-badge ${rankClass}">${entry.Rank}</span></td>
+                        <td class="circuit-size">${circuitSize}<br>${gates}</td>
+                        <td>${entry.Time}</td>
+                        <td class="${scoreClass}">${entry.Score}</td>
+                        <td class="${quantumHardwareClass}">${entry['Quantum Hardware']}</td>
+                        <td class="${classicalHardwareClass}">${entry['Classical Hardware']}</td>
+                        <td class="institution">${entry.Institution}</td>
+                        <td class="method">${entry.Method}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        function populatePerformanceChart(leaderboard) {
+            const chartContainer = document.getElementById('chart-data-points');
+            
+            // Clear existing points
+            chartContainer.innerHTML = '';
+            
+            leaderboard.forEach(entry => {
+                // Convert time to minutes for x-axis
+                const timeInMinutes = convertTimeToMinutes(entry.Time);
+                // Get score percentage for y-axis
+                const scorePercent = parseInt(entry.Score);
+                
+                // Calculate positions on chart (chart dimensions: 80-750 x, 350-70 y)
+                const maxTime = 120; // 120 minutes max on x-axis
+                const x = Math.min(80 + (timeInMinutes / maxTime) * 670, 750);
+                const y = 350 - ((scorePercent / 100) * 280);
+                
+                // Determine if it's quantum or classical
+                const isQuantum = entry['Quantum Hardware'] !== '-';
+                
+                if (isQuantum) {
+                    // Create quantum point (circle)
+                    const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+                    circle.setAttribute('cx', x);
+                    circle.setAttribute('cy', y);
+                    circle.setAttribute('r', '8');
+                    circle.setAttribute('class', 'quantum-point');
+                    
+                    // Add tooltip
+                    const title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+                    title.textContent = `${entry['Quantum Hardware']}: ${entry.Time}, ${entry.Score}`;
+                    circle.appendChild(title);
+                    
+                    chartContainer.appendChild(circle);
+                } else {
+                    // Create classical point (rectangle)
+                    const rect = document.createElementNS('http://www.w3.org/2000/svg', 'rect');
+                    rect.setAttribute('x', x - 8);
+                    rect.setAttribute('y', y - 8);
+                    rect.setAttribute('width', '16');
+                    rect.setAttribute('height', '16');
+                    rect.setAttribute('fill', '#9B5CFF');
+                    rect.setAttribute('class', 'classical-point');
+                    
+                    // Add tooltip
+                    const title = document.createElementNS('http://www.w3.org/2000/svg', 'title');
+                    title.textContent = `${entry.Method}: ${entry.Time}, ${entry.Score}`;
+                    rect.appendChild(title);
+                    
+                    chartContainer.appendChild(rect);
+                }
+            });
+        }
+
+        function convertTimeToMinutes(timeString) {
+            // Handle different time formats: "5 min", "1h 25min", "2h 0min"
+            const timeStr = timeString.toLowerCase();
+            let totalMinutes = 0;
+            
+            // Extract hours
+            const hourMatch = timeStr.match(/(\d+)h/);
+            if (hourMatch) {
+                totalMinutes += parseInt(hourMatch[1]) * 60;
+            }
+            
+            // Extract minutes
+            const minMatch = timeStr.match(/(\d+)\s*min/);
+            if (minMatch) {
+                totalMinutes += parseInt(minMatch[1]);
+            }
+            
+            return totalMinutes;
+        }
+
+        function showErrorMessage() {
+            const statsContainer = document.getElementById('stats-container');
+            const tbody = document.getElementById('leaderboard-tbody');
+            
+            statsContainer.innerHTML = '<div class="error-message">Error loading statistics data</div>';
+            tbody.innerHTML = '<tr><td colspan="8">Error loading leaderboard data</td></tr>';
+        }
+
+        // Load data when DOM is ready
+        document.addEventListener('DOMContentLoaded', loadLeaderboardData);
+    </script>
 </body>
 </html>
