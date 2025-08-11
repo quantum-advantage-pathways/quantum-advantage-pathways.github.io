@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Algorithmic Methods - Quantum Advantage Framework</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="nav">
+        <div class="container">
+            <a href="index.html" class="nav-logo">Quantum Advantage Framework</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Overview</a></li>
+                <li><a href="confidence_bounds.html">Confidence Bounds</a></li>
+                <li><a href="algorithmic_methods.html" class="active">Algorithmic Methods</a></li>
+                <li><a href="classical_verification.html">Classical Verification</a></li>
+                <li><a href="peak_circuits.html">Peak Circuits</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Algorithmic Methods</h1>
+                <p>Certifiable Bounds Through the Variational Principle</p>
+                <a href="https://arxiv.org/pdf/2506.20658" class="btn" target="_blank">Read the Research Paper</a>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <p>The <strong>variational principle</strong> provides a powerful framework for certifying quantum solutions, particularly in optimization and ground-state energy estimation. This pathway enables <strong>solution quality to be ranked and benchmarked</strong>, even when exact answers are unknown or classically intractable.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Classical Ranking Capability</h2>
+                <div class="grid grid-2">
+                    <div>
+                        <p>Variational algorithms guarantee that the estimated energy is an <strong>upper bound</strong> to the true ground-state energy.</p>
+                        <p>This allows for <strong>direct comparison</strong> between quantum and classical methods, even in the absence of exact solutions.</p>
+                        <p>As noted in the paper, this property is central to establishing trust in variational quantum outputs.</p>
+                    </div>
+                    <div class="quote-block">
+                        <p>"In variational approaches, we are always assured that the reported number is an upper bound to the true energy value."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Spectrum of Approaches</h2>
+                <p>The variational landscape spans a wide range of algorithms, each with different trade-offs in depth, precision, and hardware requirements:</p>
+                
+                <div class="grid grid-3">
+                    <div class="card">
+                        <h3>Quantum Phase Estimation (QPE)</h3>
+                        <p>Offers exponential precision scaling but requires fault-tolerant execution.</p>
+                        <p>This method provides the highest theoretical precision but demands significant quantum error correction capabilities.</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>Variational Quantum Eigensolvers (VQE)</h3>
+                        <p>Suitable for near-term devices, though limited by statistical uncertainty and measurement overhead.</p>
+                        <p>VQE represents a practical approach for current noisy intermediate-scale quantum (NISQ) devices.</p>
+                    </div>
+
+                    <div class="card">
+                        <h3>Sample-based Quantum Diagonalization (SQD)</h3>
+                        <p>A hybrid method that projects quantum data into a classical subspace for high-precision diagonalization.</p>
+                        <div class="quote-block">
+                            <p>"SQD has already been used to estimate energies for systems beyond exact diagonalization... robust to quantum sampling errors."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Quantum-Classical Integration</h2>
+                <p>Modern hybrid algorithms like <strong>SQD</strong> and <strong>Sample-based Krylov Quantum Diagonalization (SKQD)</strong> combine quantum sampling with classical diagonalization.</p>
+                
+                <div class="grid grid-2">
+                    <div>
+                        <ul>
+                            <li>These methods <strong>store quantum-derived subspaces in classical memory</strong>, enabling deterministic, high-precision verification</li>
+                            <li>They inherit convergence guarantees from QPE while avoiding the need for deep circuits or variational ansätze</li>
+                        </ul>
+                    </div>
+                    <div class="quote-block">
+                        <p>"Both SQD and SKQD achieve the highest degree of verifiability... allowing for a high-precision ranking of their accuracy."</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Why It Matters</h2>
+                <p class="text-center">Variational methods offer a <strong>scalable and certifiable</strong> route to quantum advantage. By leveraging the variational principle and integrating classical post-processing, these algorithms enable <strong>mathematically grounded benchmarking</strong>—even in the absence of full fault tolerance.</p>
+                
+                <div class="text-center mt-lg">
+                    <a href="confidence_bounds.html" class="btn-outline btn">← Previous: Confidence Bounds</a>
+                    <a href="classical_verification.html" class="btn">Next: Classical Verification →</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Quantum Advantage Framework. Based on IBM–Pasqal collaboration research.</p>
+        </div>
+    </footer>
+</body>
+</html>

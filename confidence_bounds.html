@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Provable Confidence Bounds - Quantum Advantage Framework</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="nav">
+        <div class="container">
+            <a href="index.html" class="nav-logo">Quantum Advantage Framework</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Overview</a></li>
+                <li><a href="confidence_bounds.html" class="active">Confidence Bounds</a></li>
+                <li><a href="algorithmic_methods.html">Algorithmic Methods</a></li>
+                <li><a href="classical_verification.html">Classical Verification</a></li>
+                <li><a href="peak_circuits.html">Peak Circuits</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Provable Confidence Bounds</h1>
+                <p>Establishing Trust Through Rigorous Error Control</p>
+                <a href="https://arxiv.org/pdf/2506.20658" class="btn" target="_blank">Read the Research Paper</a>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <p>As quantum computers begin to tackle problems beyond classical reach, ensuring the <strong>correctness of their outputs</strong> becomes essential. The <strong>Provable Confidence Bounds</strong> pathway provides a rigorous foundation for validating quantum computations by offering <strong>mathematically guaranteed error bars</strong>—a central requirement for any credible claim of quantum advantage.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="grid grid-3">
+                    <div class="card">
+                        <h3>Fault-Tolerant Quantum Error Correction (QEC)</h3>
+                        <p>QEC encodes logical qubits across many physical qubits to detect and correct errors without collapsing the quantum state.</p>
+                        <ul>
+                            <li>Techniques such as <strong>surface codes</strong> and <strong>quantum low-density parity-check (qLDPC) codes</strong> offer provable error suppression</li>
+                            <li>These methods are foundational for <strong>fault-tolerant quantum computing (FTQC)</strong> but require substantial overhead—often thousands of physical qubits per logical qubit</li>
+                        </ul>
+                        <div class="quote-block">
+                            <p>"The correctable nature of fault-tolerant circuits ensures the accuracy of quantum computations."</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Quantum Error Mitigation (QEM)</h3>
+                        <p>QEM offers a near-term alternative to QEC by reducing bias in noisy quantum outputs through classical post-processing.</p>
+                        <ul>
+                            <li>Methods like <strong>Zero-Noise Extrapolation (ZNE)</strong> and <strong>Probabilistic Error Cancellation (PEC)</strong> can yield rigorous error bounds for short-depth circuits</li>
+                            <li>These techniques avoid the need for extra qubits but often incur <strong>exponential sampling overhead</strong></li>
+                        </ul>
+                        <div class="quote-block">
+                            <p>"Several QEM methods have demonstrated the ability to yield accurate expectation values from short-depth circuits, with rigorous error bounds."</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Post-Selected Error Detection</h3>
+                        <p>This intermediate approach uses additional qubits to detect (but not correct) errors and <strong>post-selects</strong> only valid outcomes.</p>
+                        <ul>
+                            <li>It offers better sampling efficiency than PEC and requires fewer qubits than QEC</li>
+                            <li>Crucially, it supports <strong>single-shot measurements</strong>, making it highly compatible with current quantum hardware</li>
+                        </ul>
+                        <div class="quote-block">
+                            <p>"Post-selected error detection... benefits from extremely fast sampling speeds and is compatible with single-shot measurements."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Why It Matters</h2>
+                <p class="text-center">These methods form the <strong>most general and rigorous pathway</strong> to validating quantum computations. As emphasized in the paper, they are not only theoretically sound but also <strong>practically aligned with the capabilities of today's quantum systems</strong>, making them a cornerstone for early demonstrations of quantum advantage.</p>
+                
+                <div class="text-center mt-lg">
+                    <a href="index.html" class="btn-outline btn">← Back to Overview</a>
+                    <a href="algorithmic_methods.html" class="btn">Next: Algorithmic Methods →</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Quantum Advantage Framework. Based on IBM–Pasqal collaboration research.</p>
+        </div>
+    </footer>
+</body>
+</html>

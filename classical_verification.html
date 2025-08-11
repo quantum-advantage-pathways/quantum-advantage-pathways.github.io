@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Efficient Classical Verification - Quantum Advantage Framework</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="nav">
+        <div class="container">
+            <a href="index.html" class="nav-logo">Quantum Advantage Framework</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Overview</a></li>
+                <li><a href="confidence_bounds.html">Confidence Bounds</a></li>
+                <li><a href="algorithmic_methods.html">Algorithmic Methods</a></li>
+                <li><a href="classical_verification.html" class="active">Classical Verification</a></li>
+                <li><a href="peak_circuits.html">Peak Circuits</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Efficient Classical Verification</h1>
+                <p>Leveraging Classical Resources to Validate Quantum Outputs</p>
+                <a href="https://arxiv.org/pdf/2506.20658" class="btn" target="_blank">Read the Research Paper</a>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <p>In some problem classes, quantum computers can produce solutions that are <strong>hard to find classically</strong>, yet <strong>easy to verify</strong> once obtained. This pathway enables scalable validation of quantum outputs without requiring full classical simulation of the quantum process—making it a pragmatic route to early demonstrations of quantum advantage.</p>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="grid grid-3">
+                    <div class="card">
+                        <h3>Sampling Problems with Structure</h3>
+                        <p>Certain quantum circuits are designed to produce output distributions with <strong>detectable structure</strong>, such as <strong>peaked circuits</strong> that generate specific bitstrings with high probability.</p>
+                        <ul>
+                            <li>The presence of such structure can be verified through <strong>classical statistical analysis</strong> of the sampled outputs</li>
+                            <li>This approach enables validation without simulating the full quantum distribution</li>
+                        </ul>
+                        <div class="quote-block">
+                            <p>"Peaked random circuits... enable new opportunities for demonstrating verifiable quantum advantage, as the 'peakedness' can be detected through an analysis of the sampled outputs."</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Algebraic Problems</h3>
+                        <p>Some quantum algorithms solve problems whose <strong>solutions are classically</strong> verifiable, even if the problems themselves are classically intractable.</p>
+                        <ul>
+                            <li>Examples include <strong>integer factorization</strong> via Shor's algorithm, where the result can be checked by simple multiplication</li>
+                            <li>Similarly, <strong>combinatorial optimization</strong> problems allow direct evaluation of solution quality</li>
+                        </ul>
+                        <div class="quote-block">
+                            <p>"In this specific case, it is straightforward to verify that a proposed solution is correct through an efficient classical computation."</p>
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <h3>Observable Measurements</h3>
+                        <p>Quantum circuits that estimate <strong>expectation values of observables</strong>—a common task in quantum simulation and variational algorithms—can sometimes be validated through:</p>
+                        <ul>
+                            <li><strong>Conservation laws</strong></li>
+                            <li><strong>Consistency checks</strong></li>
+                            <li><strong>Comparison with known classical bounds</strong>, especially in systems with symmetries or known limiting behavior</li>
+                        </ul>
+                        <div class="quote-block">
+                            <p>"Models with conserved quantities offer some verification of the quantum computation... particularly crucial to have error mitigation methods that can provide expectation values with rigorous error bars."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Key Verification Strategies</h2>
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3>Statistical Analysis</h3>
+                        <p>Use classical statistical methods to detect quantum structure in sampled outputs, particularly for circuits designed to exhibit specific distributional properties.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Solution Checking</h3>
+                        <p>Leverage problems where quantum-generated solutions can be efficiently verified using classical computation, even when finding the solution classically is intractable.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Why It Matters</h2>
+                <p class="text-center">This pathway provides a <strong>scalable and efficient route to validation</strong>, enabling quantum advantage claims to be tested using classical resources. As emphasized in the paper, such problems are ideal for early demonstrations of quantum advantage, where <strong>trust in the output</strong> can be established without full quantum-classical parity.</p>
+                
+                <div class="text-center mt-lg">
+                    <a href="algorithmic_methods.html" class="btn-outline btn">← Previous: Algorithmic Methods</a>
+                    <a href="index.html" class="btn">Back to Overview →</a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Quantum Advantage Framework. Based on IBM–Pasqal collaboration research.</p>
+        </div>
+    </footer>
+</body>
+</html>

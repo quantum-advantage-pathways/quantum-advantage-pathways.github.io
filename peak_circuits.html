@@ -1,0 +1,599 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Peak Circuits Leaderboard - Quantum Advantage Framework</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .leaderboard-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--spacing-lg) 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .leaderboard-table th {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            color: var(--text-light);
+            padding: var(--spacing-md);
+            text-align: left;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        .leaderboard-table td {
+            padding: var(--spacing-md);
+            border-bottom: 1px solid var(--border-subtle);
+            vertical-align: middle;
+        }
+        
+        .leaderboard-table tr:nth-child(even) {
+            background-color: #f8f9ff;
+        }
+        
+        .leaderboard-table tr:hover {
+            background-color: #e8f4ff;
+        }
+        
+        .score-100 {
+            color: #198038;
+            font-weight: 600;
+        }
+        
+        .score-partial {
+            color: #fa4d56;
+            font-weight: 600;
+        }
+        
+        .time-fast {
+            color: #198038;
+            font-weight: 500;
+        }
+        
+        .time-medium {
+            color: #b28600;
+            font-weight: 500;
+        }
+        
+        .time-slow {
+            color: #fa4d56;
+            font-weight: 500;
+        }
+        
+        .circuit-size {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.9rem;
+            color: var(--text-primary);
+        }
+        
+        .hardware-quantum {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 500;
+        }
+        
+        .hardware-classical {
+            color: var(--text-secondary);
+            font-weight: 500;
+        }
+        
+        .institution {
+            font-weight: 500;
+            color: var(--primary-blue);
+        }
+        
+        .method {
+            font-size: 0.9rem;
+            color: var(--text-secondary);
+        }
+        
+        .rank-badge {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: 600;
+            color: white;
+            margin-right: var(--spacing-sm);
+        }
+        
+        .rank-1 { background: linear-gradient(135deg, #FFD700, #FFA500); }
+        .rank-2 { background: linear-gradient(135deg, #C0C0C0, #808080); }
+        .rank-3 { background: linear-gradient(135deg, #CD7F32, #8B4513); }
+        .rank-other { background: linear-gradient(135deg, var(--text-secondary), #393939); }
+        
+        .leaderboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .stat-card {
+            background: white;
+            padding: var(--spacing-md);
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: var(--spacing-xs);
+        }
+        
+        /* Dashboard Graph Styles */
+        .dashboard-section {
+            background: white;
+            padding: var(--spacing-lg);
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background: #f8f9ff;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            margin: var(--spacing-md) 0;
+        }
+        
+        .chart-svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .axis-line {
+            stroke: #393939;
+            stroke-width: 2;
+        }
+        
+        .grid-line {
+            stroke: #e0e0e0;
+            stroke-width: 1;
+            stroke-dasharray: 5,5;
+        }
+        
+        .reference-line {
+            stroke: #0f62fe;
+            stroke-width: 2;
+            stroke-dasharray: 8,4;
+        }
+        
+        .quantum-point {
+            fill: none;
+            stroke: #0f62fe;
+            stroke-width: 3;
+            r: 8;
+        }
+        
+        .classical-point {
+            fill: #9B5CFF;
+            stroke: none;
+        }
+        
+        .axis-label {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 14px;
+            fill: #393939;
+            font-weight: 500;
+        }
+        
+        .axis-tick {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 12px;
+            fill: #525252;
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-md);
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            font-size: 1rem;
+            color: var(--text-primary);
+        }
+        
+        .legend-quantum {
+            width: 20px;
+            height: 20px;
+            border: 3px solid #0f62fe;
+            border-radius: 50%;
+            background: none;
+        }
+        
+        .legend-classical {
+            width: 20px;
+            height: 20px;
+            background: #9B5CFF;
+        }
+        
+        .chart-title {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        @media (max-width: 768px) {
+            .leaderboard-table {
+                font-size: 0.8rem;
+            }
+            
+            .leaderboard-table th,
+            .leaderboard-table td {
+                padding: var(--spacing-xs);
+            }
+            
+            .chart-container {
+                height: 300px;
+            }
+            
+            .legend {
+                flex-direction: column;
+                align-items: center;
+                gap: var(--spacing-sm);
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="container">
+            <a href="index.html" class="nav-logo">Quantum Advantage Framework</a>
+            <ul class="nav-links">
+                <li><a href="index.html">Overview</a></li>
+                <li><a href="confidence_bounds.html">Confidence Bounds</a></li>
+                <li><a href="algorithmic_methods.html">Algorithmic Methods</a></li>
+                <li><a href="classical_verification.html">Classical Verification</a></li>
+                <li><a href="peak_circuits.html" class="active">Peak Circuits</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Peak Circuits Leaderboard</h1>
+                <p>Benchmarking Quantum Sampling with Detectable Structure</p>
+                <p>Real-time results from quantum advantage experiments worldwide</p>
+                <a href="#submit-info" class="btn" style="margin-top: var(--spacing-md);">Submit Your Results</a>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="dashboard-section">
+                    <h2 class="chart-title">Performance Dashboard</h2>
+                    <div class="chart-container">
+                        <svg class="chart-svg" viewBox="0 0 800 400">
+                            <!-- Grid lines -->
+                            <defs>
+                                <pattern id="grid" width="80" height="40" patternUnits="userSpaceOnUse">
+                                    <path d="M 80 0 L 0 0 0 40" fill="none" stroke="#e0e0e0" stroke-width="1" opacity="0.3"/>
+                                </pattern>
+                            </defs>
+                            <rect width="100%" height="100%" fill="url(#grid)" />
+                            
+                            <!-- Axes -->
+                            <line x1="80" y1="350" x2="750" y2="350" class="axis-line"/>
+                            <line x1="80" y1="350" x2="80" y2="50" class="axis-line"/>
+                            
+                            <!-- Reference line at 100% -->
+                            <line x1="80" y1="70" x2="750" y2="70" class="reference-line"/>
+                            
+                            <!-- Y-axis labels -->
+                            <text x="30" y="355" class="axis-tick">0%</text>
+                            <text x="30" y="275" class="axis-tick">25%</text>
+                            <text x="30" y="195" class="axis-tick">50%</text>
+                            <text x="30" y="115" class="axis-tick">75%</text>
+                            <text x="20" y="75" class="axis-tick">100%</text>
+                            
+                            <!-- X-axis labels -->
+                            <text x="80" y="375" class="axis-tick">0</text>
+                            <text x="195" y="375" class="axis-tick">20</text>
+                            <text x="310" y="375" class="axis-tick">40</text>
+                            <text x="425" y="375" class="axis-tick">60</text>
+                            <text x="540" y="375" class="axis-tick">80</text>
+                            <text x="655" y="375" class="axis-tick">100</text>
+                            <text x="750" y="375" class="axis-tick">120</text>
+                            
+                            <!-- Axis labels -->
+                            <text x="400" y="395" class="axis-label" text-anchor="middle">Time (minutes)</text>
+                            <text x="25" y="200" class="axis-label" text-anchor="middle" transform="rotate(-90 25 200)">Score</text>
+                            
+                            <!-- Data points -->
+                            <!-- Quantum points (circles) -->
+                            <circle cx="85" cy="70" r="8" class="quantum-point" />   <!-- IBM Heron R2: 20 sec, 100% -->
+                            <circle cx="105" cy="70" r="8" class="quantum-point" />  <!-- IBM Heron R1: 5 min, 100% -->
+                            <circle cx="88" cy="70" r="8" class="quantum-point" />   <!-- IonQ Forte: 45 sec, 100% -->
+                            
+                            <!-- Classical points (Square marks) -->
+                            <rect x="102" y="150" width="16" height="16" fill="#9B5CFF" class="classical-point"/>  <!-- 3 min, 85% -->
+                            <rect x="155" y="102" width="16" height="16" fill="#9B5CFF" class="classical-point"/>  <!-- 15 min, 95% -->
+                            <rect x="235" y="134" width="16" height="16" fill="#9B5CFF" class="classical-point"/>  <!-- 30 min, 87% -->
+                            <rect x="95" y="166" width="16" height="16" fill="#9B5CFF" class="classical-point"/>   <!-- 2 min, 82% -->
+                            <rect x="540" y="86" width="16" height="16" fill="#9B5CFF" class="classical-point"/>   <!-- 80 min, 98% -->
+                            <rect x="425" y="118" width="16" height="16" fill="#9B5CFF" class="classical-point"/>  <!-- 60 min, 92% -->
+                            <rect x="655" y="150" width="16" height="16" fill="#9B5CFF" class="classical-point"/>  <!-- 100 min, 85% -->
+                            <rect x="310" y="134" width="16" height="16" fill="#9B5CFF" class="classical-point"/>  <!-- 40 min, 87% -->
+                        </svg>
+                    </div>
+                    <div class="legend">
+                        <div class="legend-item">
+                            <div class="legend-quantum"></div>
+                            <span>Quantum</span>
+                        </div>
+                        <div class="legend-item">
+                            <div class="legend-classical"></div>
+                            <span>Classical</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="leaderboard-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">15</div>
+                        <div class="stat-label">Active Experiments</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">8</div>
+                        <div class="stat-label">Research Institutions</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">53</div>
+                        <div class="stat-label">Max Qubits Tested</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">100%</div>
+                        <div class="stat-label">Best Verification Score</div>
+                    </div>
+                </div>
+
+                <h2>Current Leaderboard</h2>
+                <p>Ranked by verification score and computational efficiency. Peak circuits demonstrate quantum advantage through statistical verification of structured sampling outputs.</p>
+                
+                <table class="leaderboard-table">
+                    <thead>
+                        <tr>
+                            <th>Rank</th>
+                            <th>Circuit Size</th>
+                            <th>Time</th>
+                            <th>Score</th>
+                            <th>Quantum Hardware</th>
+                            <th>Classical Hardware</th>
+                            <th>Institution</th>
+                            <th>Method</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><span class="rank-badge rank-1">1</span></td>
+                            <td class="circuit-size">53Q | HH<br>1512 Gates</td>
+                            <td>5 min</td>
+                            <td>100%</td>
+                            <td class="hardware-quantum">IBM Heron R2</td>
+                            <td class="hardware-classical">GPU</td>
+                            <td class="institution">IBM Research</td>
+                            <td class="method">Quantum + Clustering</td>
+                        </tr>
+                        <tr>
+                            <td><span class="rank-badge rank-2">2</span></td>
+                            <td class="circuit-size">53Q | HH<br>1512 Gates</td>
+                            <td>12 min</td>
+                            <td>100%</td>
+                            <td class="hardware-quantum">-</td>
+                            <td class="hardware-classical">GPU</td>
+                            <td class="institution">Blue Qubit</td>
+                            <td class="method">Belief Propagation</td>
+                        </tr>
+                        <tr>
+                            <td><span class="rank-badge rank-3">3</span></td>
+                            <td class="circuit-size">53Q | HH<br>1512 Gates</td>
+                            <td>18 min</td>
+                            <td>100%</td>
+                            <td class="hardware-quantum">IBM Heron R1</td>
+                            <td class="hardware-classical">CPU</td>
+                            <td class="institution">IBM Research</td>
+                            <td class="method">Quantum + Clustering</td>
+                        </tr>
+                        <tr>
+                            <td><span class="rank-badge rank-other">4</span></td>
+                            <td class="circuit-size">45Q | HH<br>1275 Gates</td>
+                            <td>35 min</td>
+                            <td>100%</td>
+                            <td class="hardware-quantum">-</td>
+                            <td class="hardware-classical">GPU</td>
+                            <td class="institution">Google AI</td>
+                            <td class="method">MPS + Clustering</td>
+                        </tr>
+                        <tr>
+                            <td><span class="rank-badge rank-other">5</span></td>
+                            <td class="circuit-size">53Q | HH<br>1512 Gates</td>
+                            <td>1h 25min</td>
+                            <td>100%</td>
+                            <td class="hardware-quantum">-</td>
+                            <td class="hardware-classical">GPU</td>
+                            <td class="institution">MIT</td>
+                            <td class="method">MPS + Clustering</td>
+                        </tr>
+                        <tr>
+                            <td><span class="rank-badge rank-other">6</span></td>
+                            <td class="circuit-size">45Q | HH<br>1275 Gates</td>
+                            <td>28 min</td>
+                            <td>87%</td>
+                            <td class="hardware-quantum">-</td>
+                            <td class="hardware-classical">GPU</td>
+                            <td class="institution">Oxford</td>
+                            <td class="method">AI Enhanced</td>
+                        </tr>
+                        <tr>
+                            <td><span class="rank-badge rank-other">7</span></td>
+                            <td class="circuit-size">40Q | HH<br>1140 Gates</td>
+                            <td>8 min</td>
+                            <td>100%</td>
+                            <td class="hardware-quantum">IonQ Forte</td>
+                            <td class="hardware-classical">-</td>
+                            <td class="institution">IonQ</td>
+                            <td class="method">Trapped Ion + VQE</td>
+                        </tr>
+                        <tr>
+                            <td><span class="rank-badge rank-other">8</span></td>
+                            <td class="circuit-size">35Q | HH<br>995 Gates</td>
+                            <td>1h 45min</td>
+                            <td>100%</td>
+                            <td class="hardware-quantum">-</td>
+                            <td class="hardware-classical">TPU</td>
+                            <td class="institution">Google AI</td>
+                            <td class="method">Tensor Networks</td>
+                        </tr>
+                        <tr>
+                            <td><span class="rank-badge rank-other">9</span></td>
+                            <td class="circuit-size">30Q | HH<br>855 Gates</td>
+                            <td>2h 0min</td>
+                            <td>92%</td>
+                            <td class="hardware-quantum">-</td>
+                            <td class="hardware-classical">CPU Cluster</td>
+                            <td class="institution">CERN</td>
+                            <td class="method">Monte Carlo + ML</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Understanding Peak Circuits</h2>
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3>What are Peak Circuits?</h3>
+                        <p>Peak circuits are quantum circuits specifically designed to produce output distributions with detectable structure - they generate specific bitstrings with high probability that can be verified through classical statistical analysis.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Verification Method</h3>
+                        <p>The "peakedness" of the output distribution can be detected through analysis of sampled outputs, enabling validation without simulating the full quantum distribution - a key pathway to demonstrable quantum advantage.</p>
+                    </div>
+                </div>
+                
+                <div class="quote-block">
+                    <p>"Peaked random circuits... enable new opportunities for demonstrating verifiable quantum advantage, as the 'peakedness' can be detected through an analysis of the sampled outputs."</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Competition Rules & Metrics</h2>
+                <div class="grid grid-3">
+                    <div class="card">
+                        <h3>Circuit Specifications</h3>
+                        <ul>
+                            <li><strong>Format:</strong> Qubits | Layout</li>
+                            <li><strong>Gate Count:</strong> Total operations</li>
+                            <li><strong>Depth:</strong> Critical path length</li>
+                            <li><strong>Structure:</strong> Heavy-Hexagonal (HH) topology</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Scoring System</h3>
+                        <ul>
+                            <li><strong>100%:</strong> Perfect peak detection</li>
+                            <li><strong>95-99%:</strong> Strong verification</li>
+                            <li><strong>90-94%:</strong> Partial verification</li>
+                            <li><strong>&lt;90%:</strong> Insufficient evidence</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Time Categories</h3>
+                        <ul>
+                            <li><strong>Fast:</strong> &lt;5 minutes</li>
+                            <li><strong>Medium:</strong> 5-20 minutes</li>
+                            <li><strong>Slow:</strong> &gt;20 minutes</li>
+                            <li><strong>Timeout:</strong> &gt;1 hour</li>
+                        </ul>
+                    </div>
+                </div>
+                
+                <div class="text-center mt-lg">
+                    <a href="classical_verification.html" class="btn-outline btn">← Learn More About Verification</a>
+                    <a href="index.html" class="btn">Back to Overview →</a>
+                </div>
+            </div>
+        </section>
+
+        <section class="section" id="submit-info">
+            <div class="container">
+                <h2 class="text-center">Submit Your Peak Circuit Results</h2>
+                <p class="text-center mb-lg">Join the global quantum advantage competition by submitting your peak circuit verification results</p>
+                
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3>Submission Requirements</h3>
+                        <ul>
+                            <li><strong>Circuit Specification:</strong> Heavy-Hexagonal topology with detailed gate count</li>
+                            <li><strong>Verification Score:</strong> Statistical analysis of peak detection (80%+ required)</li>
+                            <li><strong>Hardware Details:</strong> Quantum processor specs or classical system configuration</li>
+                            <li><strong>Execution Time:</strong> Total runtime from circuit loading to result verification</li>
+                            <li><strong>Method Description:</strong> Algorithm, error mitigation, or classical simulation approach</li>
+                            <li><strong>Reproducibility:</strong> Code, parameters, and setup instructions</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Submission Process</h3>
+                        <ol>
+                            <li><strong>Prepare Results:</strong> Format your data according to the submission template</li>
+                            <li><strong>Validation:</strong> Independent verification of your peak detection claims</li>
+                            <li><strong>Review Process:</strong> Technical review by quantum advantage research committee</li>
+                            <li><strong>Publication:</strong> Accepted results appear on the leaderboard within 2-4 weeks</li>
+                        </ol>
+                        <div class="text-center mt-lg">
+                            <a href="mailto:quantum-advantage@research.ibm.com?subject=Peak Circuit Results Submission" class="btn">Contact Research Team</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quote-block">
+                    <p><strong>Important:</strong> All submissions must demonstrate genuine quantum advantage claims through rigorous peak circuit verification. Results undergo peer review to ensure scientific validity and reproducibility.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Quantum Advantage Framework. Peak Circuits Leaderboard - Live Results</p>
+        </div>
+    </footer>
+</body>
+</html>
