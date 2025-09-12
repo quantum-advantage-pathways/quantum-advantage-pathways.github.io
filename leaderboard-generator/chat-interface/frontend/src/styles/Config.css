@@ -1,0 +1,174 @@
+/* Configuration interface styles */
+
+/* Configuration list */
+.config-list-container {
+  margin-bottom: var(--spacing-lg);
+}
+
+.config-list-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--spacing-lg);
+}
+
+.config-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--spacing-md);
+}
+
+.config-item {
+  padding: var(--spacing-md);
+  border-radius: var(--border-radius-md);
+  background-color: var(--surface-color);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition-fast);
+  display: flex;
+  flex-direction: column;
+}
+
+.config-item:hover {
+  box-shadow: var(--shadow-md);
+}
+
+.config-item-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: var(--spacing-sm);
+}
+
+.config-item-title {
+  font-size: var(--font-size-lg);
+  font-weight: 600;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.config-item-actions {
+  display: flex;
+  gap: var(--spacing-sm);
+  flex-wrap: wrap;
+}
+
+.config-item-meta {
+  color: var(--text-secondary);
+  font-size: var(--font-size-sm);
+  margin-bottom: var(--spacing-md);
+}
+
+.config-item-description {
+  color: var(--text-primary);
+  margin-bottom: var(--spacing-md);
+  flex-grow: 1;
+}
+
+/* Configuration form */
+.config-form {
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.config-form .card {
+  margin-bottom: var(--spacing-lg);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--spacing-md);
+}
+
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-lg);
+}
+
+/* Configuration editor page */
+.config-editor-page {
+  padding: var(--spacing-lg);
+}
+
+.config-editor-page h1 {
+  margin-bottom: var(--spacing-lg);
+}
+
+/* Configuration preview */
+.preview-container {
+  border: 1px solid var(--border-color);
+  border-radius: var(--border-radius-md);
+  overflow: hidden;
+  margin-bottom: var(--spacing-lg);
+}
+
+.preview-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: var(--spacing-md);
+  background-color: var(--background-color);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.preview-content {
+  height: 600px;
+  overflow: auto;
+}
+
+.preview-content iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+}
+
+.preview-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: var(--spacing-md);
+  margin-top: var(--spacing-md);
+}
+
+/* Visualization preview */
+.visualization-preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: var(--spacing-lg);
+  background-color: var(--background-color);
+  border-radius: var(--border-radius-md);
+  margin-bottom: var(--spacing-lg);
+}
+
+.visualization-preview svg {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .config-list {
+    grid-template-columns: 1fr;
+  }
+  
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+  
+  .config-item-header {
+    flex-direction: column;
+  }
+  
+  .config-item-actions {
+    margin-top: var(--spacing-sm);
+  }
+}
+
+/* Made with Bob */

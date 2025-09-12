@@ -1,0 +1,51 @@
+version: '3.8'
+
+services:
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "4000:4000"
+    environment:
+      - NODE_ENV=production
+      - PORT=4000
+      - OPENAI_API_KEY=${OPENAI_API_KEY}
+      - LLM_PROVIDER=${LLM_PROVIDER:-openai}
+      - LOCAL_LLM_URL=${LOCAL_LLM_URL:-http://local-llm:8080}
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+    depends_on:
+      - local-llm
+    networks:
+      - leaderboard-network
+
+  # Optional local LLM service (only used if LLM_PROVIDER=local)
+  local-llm:
+    image: ghcr.io/ggerganov/llama.cpp:server
+    ports:
+      - "8080:8080"
+    volumes:
+      - ./models:/models
+    command: >
+      --model /models/mistral-7b-instruct-v0.2.Q4_K_M.gguf
+      --ctx-size 4096
+      --threads 4
+      --port 8080
+      --host 0.0.0.0
+    environment:
+      - CUDA_VISIBLE_DEVICES=${CUDA_VISIBLE_DEVICES:-}
+    deploy:
+      resources:
+        limits:
+          memory: 8G
+    restart: unless-stopped
+    networks:
+      - leaderboard-network
+
+networks:
+  leaderboard-network:
+    driver: bridge
+
+# Made with Bob

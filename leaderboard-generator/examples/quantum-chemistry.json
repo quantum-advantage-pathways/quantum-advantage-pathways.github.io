@@ -1,0 +1,190 @@
+{
+  "id": "quantum-chemistry",
+  "title": "Quantum Chemistry Simulations",
+  "shortDescription": "Benchmarking molecular simulation accuracy",
+  "longDescription": "This leaderboard tracks the accuracy and performance of quantum algorithms for molecular simulations, comparing quantum and classical approaches.",
+  "navigation": {
+    "position": 1
+  },
+  "columns": [
+    {
+      "id": "rank",
+      "name": "Rank",
+      "type": "number",
+      "width": "60px",
+      "className": "rank-column",
+      "sortable": true,
+      "defaultSort": true,
+      "sortDirection": "asc"
+    },
+    {
+      "id": "molecule",
+      "name": "Molecule",
+      "type": "text",
+      "width": "120px",
+      "className": "molecule-column",
+      "sortable": true
+    },
+    {
+      "id": "accuracy",
+      "name": "Accuracy",
+      "type": "percentage",
+      "width": "100px",
+      "className": "accuracy-column",
+      "sortable": true,
+      "formatting": {
+        "thresholds": [
+          {"value": 99, "class": "score-100"},
+          {"value": 95, "class": "score-high"},
+          {"value": 90, "class": "score-medium"},
+          {"value": 0, "class": "score-low"}
+        ]
+      }
+    },
+    {
+      "id": "time",
+      "name": "Time",
+      "type": "time",
+      "width": "100px",
+      "className": "time-column",
+      "sortable": true
+    },
+    {
+      "id": "hardware",
+      "name": "Hardware",
+      "type": "hardware",
+      "width": "120px",
+      "className": "hardware-column",
+      "sortable": true
+    },
+    {
+      "id": "qubits",
+      "name": "Qubits",
+      "type": "number",
+      "width": "80px",
+      "className": "qubits-column",
+      "sortable": true
+    },
+    {
+      "id": "institution",
+      "name": "Institution",
+      "type": "text",
+      "width": "120px",
+      "className": "institution-column",
+      "sortable": true
+    },
+    {
+      "id": "method",
+      "name": "Method",
+      "type": "text",
+      "width": "150px",
+      "className": "method-column",
+      "sortable": true
+    }
+  ],
+  "initialStats": {
+    "totalSimulations": 42,
+    "institutions": 8,
+    "bestAccuracy": "99.8%",
+    "largestMolecule": "C20H25N3O"
+  },
+  "initialEntries": [
+    {
+      "rank": 1,
+      "molecule": "H2O",
+      "accuracy": 99.8,
+      "time": "2 min",
+      "hardware": "quantum",
+      "qubits": 32,
+      "institution": "XXXA",
+      "method": "VQE+Error Mitigation"
+    },
+    {
+      "rank": 2,
+      "molecule": "NH3",
+      "accuracy": 98.5,
+      "time": "5 min",
+      "hardware": "quantum",
+      "qubits": 28,
+      "institution": "XXXB",
+      "method": "QPE+Trotterization"
+    },
+    {
+      "rank": 3,
+      "molecule": "CH4",
+      "accuracy": 97.2,
+      "time": "8 min",
+      "hardware": "classical",
+      "qubits": 0,
+      "institution": "XXXC",
+      "method": "DMRG"
+    }
+  ],
+  "visualization": {
+    "type": "scatter",
+    "xAxis": {
+      "field": "time",
+      "label": "Computation Time (min)",
+      "min": 0,
+      "max": 60,
+      "ticks": [0, 15, 30, 45, 60],
+      "tickLabels": ["0", "15", "30", "45", "60"]
+    },
+    "yAxis": {
+      "field": "accuracy",
+      "label": "Simulation Accuracy (%)",
+      "min": 80,
+      "max": 100,
+      "ticks": [80, 85, 90, 95, 100],
+      "tickLabels": ["80%", "85%", "90%", "95%", "100%"]
+    },
+    "dataPoints": {
+      "categoryField": "hardware",
+      "categories": {
+        "quantum": {
+          "shape": "circle",
+          "color": "#0f62fe",
+          "label": "Quantum Hardware"
+        },
+        "classical": {
+          "shape": "square",
+          "color": "#9B5CFF",
+          "label": "Classical Hardware"
+        }
+      }
+    },
+    "referenceLine": {
+      "y": 95,
+      "label": "Classical Limit",
+      "style": "dashed"
+    }
+  },
+  "content": {
+    "sections": [
+      {
+        "title": "Understanding Quantum Chemistry Simulations",
+        "type": "text",
+        "content": "Quantum chemistry simulations leverage quantum computers to model molecular structures and interactions with unprecedented accuracy. This leaderboard tracks the performance of various quantum and classical algorithms in simulating molecular properties."
+      },
+      {
+        "title": "Scoring System",
+        "type": "cards",
+        "cards": [
+          {
+            "title": "Accuracy Measurement",
+            "content": "Accuracy is measured by comparing to FCI (Full Configuration Interaction) calculations, which provide the exact solution within the chosen basis set."
+          },
+          {
+            "title": "Time Measurement",
+            "content": "Time includes circuit preparation, execution, and post-processing. For quantum hardware, this includes error mitigation time."
+          },
+          {
+            "title": "Hardware Categories",
+            "content": "Results are categorized by hardware type: quantum processors (superconducting, trapped ion, etc.) or classical computers (CPU, GPU, TPU)."
+          }
+        ]
+      }
+    ]
+  },
+  "customCss": ".molecule-column { font-family: 'IBM Plex Mono', monospace; }"
+}
