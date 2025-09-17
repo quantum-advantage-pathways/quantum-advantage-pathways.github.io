@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{title}} - Quantum Advantage Framework</title>
+    <link rel="stylesheet" href="../../styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        .leaderboard-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: var(--spacing-lg) 0;
+            background: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        .leaderboard-table th {
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            color: var(--text-light);
+            padding: var(--spacing-md);
+            text-align: left;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+        
+        .leaderboard-table td {
+            padding: var(--spacing-md);
+            border-bottom: 1px solid var(--border-subtle);
+            vertical-align: middle;
+        }
+        
+        .leaderboard-table tr:nth-child(even) {
+            background-color: #f8f9ff;
+        }
+        
+        .leaderboard-table tr:hover {
+            background-color: #e8f4ff;
+        }
+        
+        .score-100 {
+            color: #198038;
+            font-weight: 600;
+        }
+        
+        .score-high {
+            color: #0f62fe;
+            font-weight: 600;
+        }
+        
+        .score-medium {
+            color: #b28600;
+            font-weight: 600;
+        }
+        
+        .score-low {
+            color: #fa4d56;
+            font-weight: 600;
+        }
+        
+        .time-fast {
+            color: #198038;
+            font-weight: 500;
+        }
+        
+        .time-medium {
+            color: #b28600;
+            font-weight: 500;
+        }
+        
+        .time-slow {
+            color: #fa4d56;
+            font-weight: 500;
+        }
+        
+        .rank-badge {
+            display: inline-block;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 30px;
+            font-weight: 600;
+            color: white;
+            margin-right: var(--spacing-sm);
+        }
+        
+        .rank-1 { background: linear-gradient(135deg, #FFD700, #FFA500); }
+        .rank-2 { background: linear-gradient(135deg, #C0C0C0, #808080); }
+        .rank-3 { background: linear-gradient(135deg, #CD7F32, #8B4513); }
+        .rank-other { background: linear-gradient(135deg, var(--text-secondary), #393939); }
+        
+        .leaderboard-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .stat-card {
+            background: white;
+            padding: var(--spacing-md);
+            border-radius: 8px;
+            text-align: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 600;
+            background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+            margin-top: var(--spacing-xs);
+        }
+        
+        /* Dashboard Graph Styles */
+        .dashboard-section {
+            background: white;
+            padding: var(--spacing-lg);
+            border-radius: 12px;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .chart-container {
+            position: relative;
+            width: 100%;
+            height: 400px;
+            background: #f8f9ff;
+            border: 2px solid #e0e0e0;
+            border-radius: 8px;
+            margin: var(--spacing-md) 0;
+        }
+        
+        .chart-svg {
+            width: 100%;
+            height: 100%;
+        }
+        
+        .axis-line {
+            stroke: #393939;
+            stroke-width: 2;
+        }
+        
+        .grid-line {
+            stroke: #e0e0e0;
+            stroke-width: 1;
+            stroke-dasharray: 5,5;
+        }
+        
+        .reference-line {
+            stroke: #0f62fe;
+            stroke-width: 2;
+            stroke-dasharray: 8,4;
+        }
+        
+        .axis-label {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 14px;
+            fill: #393939;
+            font-weight: 500;
+        }
+        
+        .axis-tick {
+            font-family: 'IBM Plex Sans', sans-serif;
+            font-size: 12px;
+            fill: #525252;
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: var(--spacing-lg);
+            margin-top: var(--spacing-md);
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xs);
+            font-size: 1rem;
+            color: var(--text-primary);
+        }
+        
+        .chart-title {
+            text-align: center;
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: var(--text-primary);
+            margin-bottom: var(--spacing-md);
+        }
+        
+        @media (max-width: 768px) {
+            .leaderboard-table {
+                font-size: 0.8rem;
+            }
+            
+            .leaderboard-table th,
+            .leaderboard-table td {
+                padding: var(--spacing-xs);
+            }
+            
+            .chart-container {
+                height: 300px;
+            }
+            
+            .legend {
+                flex-direction: column;
+                align-items: center;
+                gap: var(--spacing-sm);
+            }
+        }
+        
+        {{customCss}}
+    </style>
+</head>
+<body>
+    <nav class="nav">
+        <div class="container">
+            <a href="../../" class="nav-logo">Quantum Advantage Framework</a>
+            <ul class="nav-links">
+                {{navigationLinks}}
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>{{title}}</h1>
+                <p>{{shortDescription}}</p>
+                <a href="#submit-info" class="btn" style="margin-top: var(--spacing-md);">Submit Your Results</a>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <div class="dashboard-section">
+                    <h2 class="chart-title">Performance Dashboard</h2>
+                    <div class="chart-container">
+                        <svg class="chart-svg" viewBox="0 0 800 400">
+                            <!-- Grid lines -->
+                            <defs>
+                                <pattern id="grid" width="80" height="40" patternUnits="userSpaceOnUse">
+                                    <path d="M 80 0 L 0 0 0 40" fill="none" stroke="#e0e0e0" stroke-width="1" opacity="0.3"/>
+                                </pattern>
+                            </defs>
+                            <rect width="100%" height="100%" fill="url(#grid)" />
+                            
+                            <!-- Axes -->
+                            <line x1="80" y1="350" x2="750" y2="350" class="axis-line"/>
+                            <line x1="80" y1="350" x2="80" y2="50" class="axis-line"/>
+                            
+                            {{referenceLine}}
+                            
+                            <!-- Y-axis labels -->
+                            {{yAxisLabels}}
+                            
+                            <!-- X-axis labels -->
+                            {{xAxisLabels}}
+                            
+                            <!-- Axis labels -->
+                            <text x="400" y="395" class="axis-label" text-anchor="middle">{{xAxisTitle}}</text>
+                            <text x="25" y="200" class="axis-label" text-anchor="middle" transform="rotate(-90 25 200)">{{yAxisTitle}}</text>
+                            
+                            <!-- Data points container - will be populated dynamically -->
+                            <g id="chart-data-points">
+                                <!-- Data points will be loaded dynamically -->
+                            </g>
+                        </svg>
+                    </div>
+                    <div class="legend">
+                        {{legendItems}}
+                    </div>
+                </div>
+                
+                <div class="leaderboard-stats" id="stats-container">
+                    <!-- Stats will be loaded dynamically -->
+                </div>
+
+                <h2>Current Leaderboard</h2>
+                <p>{{leaderboardDescription}}</p>
+                
+                <table class="leaderboard-table">
+                    <thead>
+                        <tr>
+                            {{tableHeaders}}
+                        </tr>
+                    </thead>
+                    <tbody id="leaderboard-tbody">
+                        <!-- Leaderboard data will be loaded dynamically -->
+                    </tbody>
+                </table>
+            </div>
+        </section>
+
+        {{contentSections}}
+
+        <section class="section" id="submit-info">
+            <div class="container">
+                <h2 class="text-center">Submit Your {{title}} Results</h2>
+                <p class="text-center mb-lg">Join the global quantum advantage competition by submitting your results</p>
+                
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3>Submission Requirements</h3>
+                        <ul>
+                            {{submissionRequirements}}
+                        </ul>
+                    </div>
+                    
+                    <div class="card">
+                        <h3>Submission Process</h3>
+                        <ol>
+                            <li><strong>Prepare Results:</strong> Format your data according to the submission template</li>
+                            <li><strong>Validation:</strong> Independent verification of your claims</li>
+                            <li><strong>Review Process:</strong> Technical review by quantum advantage research committee</li>
+                            <li><strong>Publication:</strong> Accepted results appear on the leaderboard within 2-4 weeks</li>
+                        </ol>
+                        <div class="text-center mt-lg">
+                            <a href="mailto:quantum-advantage@research.ibm.com?subject={{title}} Results Submission" class="btn">Contact Research Team</a>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="quote-block">
+                    <p><strong>Important:</strong> All submissions must demonstrate genuine quantum advantage claims through rigorous verification. Results undergo peer review to ensure scientific validity and reproducibility.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Quantum Advantage Framework. {{title}} - Live Results</p>
+        </div>
+    </footer>
+
+    <script>
+        {{javascript}}
+    </script>
+</body>
+</html>
