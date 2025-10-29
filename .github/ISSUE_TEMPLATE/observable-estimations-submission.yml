@@ -1,4 +1,4 @@
-name: 📊 Observable Estimations Submission
+name: 📊 Path 1 - Observable Estimations Submission
 description: Submit a problem solution for the Observable Estimations pathway - Trust through rigorous error control
 title: "[Observable Estimations] "
 labels: ["pathway: observable-estimations", "submission"]
@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        ## 📊 Observable Estimations Pathway
+        ## 📊 Path 1 - Observable Estimations Pathway
 
         Thank you for submitting a solution to the **Observable Estimations** pathway!
 

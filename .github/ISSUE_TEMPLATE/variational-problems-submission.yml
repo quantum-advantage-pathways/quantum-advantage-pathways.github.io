@@ -1,4 +1,4 @@
-name: ⚛️ Variational Problems Submission
+name: ⚛️ Path 2 - Variational Problems Submission
 description: Submit a problem solution for the Variational Problems pathway - Certifiable quantum solutions via the variational principle
 title: "[Variational] "
 labels: ["pathway: variational-problems", "submission"]
@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        ## ⚛️ Variational Problems Pathway
+        ## ⚛️ Path 2 - Variational Problems Pathway
 
         Thank you for submitting a solution to the **Variational Problems** pathway!
 

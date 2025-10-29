@@ -1,4 +1,4 @@
-name: ✅ Classically Verifiable Problems Submission
+name: ✅ Path 3 - Classically Verifiable Problems Submission
 description: Submit a problem solution for the Classically Verifiable pathway - When quantum outputs are hard to find but easy to check
 title: "[Verifiable] "
 labels: ["pathway: classically-verifiable", "submission"]
@@ -6,7 +6,7 @@ body:
   - type: markdown
     attributes:
       value: |
-        ## ✅ Classically Verifiable Problems Pathway
+        ## ✅ Path 3 - Classically Verifiable Problems Pathway
 
         Thank you for submitting a solution to the **Classically Verifiable Problems** pathway!
 
