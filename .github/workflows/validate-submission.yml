@@ -3,6 +3,12 @@ name: Validate Submission
 on:
   issues:
     types: [opened, edited]
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: 'Issue number to validate'
+        required: true
+        type: number
 
 jobs:
   validate:
@@ -16,7 +22,22 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const issue = context.payload.issue;
+            // Get issue data - either from event or manual input
+            let issue;
+            if (context.payload.issue) {
+              issue = context.payload.issue;
+            } else if (context.payload.inputs && context.payload.inputs.issue_number) {
+              const issueData = await github.rest.issues.get({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: parseInt(context.payload.inputs.issue_number)
+              });
+              issue = issueData.data;
+            } else {
+              console.log('No issue found, exiting');
+              return;
+            }
+
             const issueBody = issue.body || '';
             const labels = issue.labels.map(l => l.name);
 
@@ -148,7 +169,22 @@ jobs:
         uses: actions/github-script@v7
         with:
           script: |
-            const issue = context.payload.issue;
+            // Get issue data - either from event or manual input
+            let issue;
+            if (context.payload.issue) {
+              issue = context.payload.issue;
+            } else if (context.payload.inputs && context.payload.inputs.issue_number) {
+              const issueData = await github.rest.issues.get({
+                owner: context.repo.owner,
+                repo: context.repo.repo,
+                issue_number: parseInt(context.payload.inputs.issue_number)
+              });
+              issue = issueData.data;
+            } else {
+              console.log('No issue found, exiting');
+              return;
+            }
+
             const issueBody = issue.body || '';
             const labels = issue.labels.map(l => l.name);
 
