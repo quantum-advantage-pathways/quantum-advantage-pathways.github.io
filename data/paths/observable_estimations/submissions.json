@@ -1,0 +1,22 @@
+[
+  {
+    "problemId": "some_observable",
+    "value": "-0.412",
+    "bounds": "\u00b1 0.21",
+    "method": {
+      "label": "Some method",
+      "url": "https://www.ibm.com"
+    },
+    "institution": "IBM",
+    "time": {
+      "quantum": "7 min",
+      "classical": "18 min"
+    },
+    "hardware": {
+      "quantum": "ibm_boston",
+      "classical": "32 core Intel..."
+    },
+    "submissionDate": "2025-05-12",
+    "validation": "verified"
+  }
+]

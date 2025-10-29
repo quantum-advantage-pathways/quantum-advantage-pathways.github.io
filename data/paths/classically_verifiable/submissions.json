@@ -1,0 +1,21 @@
+[
+  {
+    "problemId": "peaked_random_53",
+    "value": "4",
+    "method": {
+      "label": "Quantum + Clustering",
+      "url": "https://www.ibm.com"
+    },
+    "institution": "IBM",
+    "time": {
+      "quantum": "5 min",
+      "classical": "10 min"
+    },
+    "hardware": {
+      "quantum": "ibm_boston",
+      "classical": "32 core Intel..."
+    },
+    "submissionDate": "2025-05-04",
+    "validation": "verified"
+  }
+]

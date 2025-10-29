@@ -1,0 +1,14 @@
+[
+  {
+    "id": "some_observable",
+    "name": "Operator Loschmidt Echo (49x2400)",
+    "qasm": "problems/observable_estimations/some_observable.qasm",
+    "metadata": "problems/observable_estimations/some_observable.json",
+    "properties": {
+      "qubits": 49,
+      "topology": "Heavy-Hex",
+      "depth": 120,
+      "observable": "..."
+    }
+  }
+]

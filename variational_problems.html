@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Algorithmic Methods - Quantum Advantage Framework</title>
+    <title>Variational Problems - Quantum Advantage Framework</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -12,11 +12,26 @@
         <div class="container">
             <a href="index.html" class="nav-logo">Quantum Advantage Framework</a>
             <ul class="nav-links">
-                <li><a href="index.html">Overview</a></li>
-                <li><a href="confidence_bounds.html">Confidence Bounds</a></li>
-                <li><a href="algorithmic_methods.html" class="active">Algorithmic Methods</a></li>
-                <li><a href="classical_verification.html">Classical Verification</a></li>
-                <li><a href="leaderboard/peak_circuits/">Peak Circuits</a></li>
+                <li class="nav-item has-dropdown active">
+                    <a href="index.html" class="nav-link">Pathways</a>
+                    <ul class="dropdown">
+                        <li><a href="index.html#pathways">Overview</a></li>
+                        <li><a href="observable_estimations.html">Observable Estimations</a></li>
+                        <li><a href="variational_problems.html" class="active">Variational Problems</a></li>
+                        <li><a href="classically_verifiable.html">Classically Verifiable Problems</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item has-dropdown">
+                    <a href="advantage_trackers.html" class="nav-link">Advantage Trackers</a>
+                    <ul class="dropdown">
+                        <li><a href="advantage_trackers.html#observable_estimations">Observable Estimations</a></li>
+                        <li><a href="advantage_trackers.html#variational_problems">Variational Problems</a></li>
+                        <li><a href="advantage_trackers.html#classically_verifiable">Classically Verifiable Problems</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="participate.html" class="nav-link">Participate</a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -24,7 +39,7 @@
     <main>
         <section class="hero">
             <div class="container">
-                <h1>Algorithmic Methods</h1>
+                <h1>Variational Problems</h1>
                 <p>Certifiable Bounds Through the Variational Principle</p>
                 <a href="https://arxiv.org/pdf/2506.20658" class="btn" target="_blank">Read the Research Paper</a>
             </div>
@@ -106,8 +121,8 @@
                 <p class="text-center">Variational methods offer a <strong>scalable and certifiable</strong> route to quantum advantage. By leveraging the variational principle and integrating classical post-processing, these algorithms enable <strong>mathematically grounded benchmarking</strong>—even in the absence of full fault tolerance.</p>
                 
                 <div class="text-center mt-lg">
-                    <a href="confidence_bounds.html" class="btn-outline btn">← Previous: Confidence Bounds</a>
-                    <a href="classical_verification.html" class="btn">Next: Classical Verification →</a>
+                    <a href="observable_estimations.html" class="btn-outline btn">← Previous: Observable Estimations</a>
+                    <a href="classically_verifiable.html" class="btn">Next: Classically Verifiable Problems →</a>
                 </div>
             </div>
         </section>

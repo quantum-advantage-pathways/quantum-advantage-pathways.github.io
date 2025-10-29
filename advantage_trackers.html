@@ -1,0 +1,568 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advantage Trackers - Quantum Advantage Framework</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="nav">
+        <div class="container">
+            <a href="index.html" class="nav-logo">Quantum Advantage Framework</a>
+            <ul class="nav-links">
+                <li class="nav-item has-dropdown">
+                    <a href="index.html" class="nav-link">Pathways</a>
+                    <ul class="dropdown">
+                        <li><a href="index.html#pathways">Overview</a></li>
+                        <li><a href="observable_estimations.html">Observable Estimations</a></li>
+                        <li><a href="variational_problems.html">Variational Problems</a></li>
+                        <li><a href="classically_verifiable.html">Classically Verifiable Problems</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item has-dropdown active">
+                    <a href="advantage_trackers.html" class="nav-link">Advantage Trackers</a>
+                    <ul class="dropdown">
+                        <li><a href="#observable_estimations" class="active">Observable Estimations</a></li>
+                        <li><a href="#variational_problems">Variational Problems</a></li>
+                        <li><a href="#classically_verifiable">Classically Verifiable Problems</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="participate.html" class="nav-link">Participate</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Advantage Trackers</h1>
+                <p>Live tracking of verifiable quantum advantage claims across the three pathways. Each tracker highlights the evidence required to validate claims and the institutions contributing results.</p>
+                <div class="path-tabs" role="tablist" aria-label="Advantage trackers">
+                    <button class="path-tab active" data-target="observable_estimations" role="tab" aria-selected="true" aria-controls="observable_estimations">Path 1 · Observable Estimations</button>
+                    <button class="path-tab" data-target="variational_problems" role="tab" aria-selected="false" aria-controls="variational_problems">Path 2 · Variational Problems</button>
+                    <button class="path-tab" data-target="classically_verifiable" role="tab" aria-selected="false" aria-controls="classically_verifiable">Path 3 · Classically Verifiable Problems</button>
+                </div>
+            </div>
+        </section>
+
+        <section class="section trackers">
+            <div class="container">
+                <div class="tab-panel active" id="observable_estimations" data-path="observable_estimations" role="tabpanel" aria-hidden="false">
+                    <div class="tracker-intro">
+                        <h2 class="tab-title">Path 1 · Observable Estimations</h2>
+                        <p class="tracker-description"></p>
+                        <p class="validation-note"></p>
+                    </div>
+                    <div class="table-section">
+                        <div class="table-section-header">
+                            <h3>Submission Log</h3>
+                            <p class="value-label"></p>
+                        </div>
+                        <div class="table-wrapper submissions-wrapper"></div>
+                    </div>
+                    <div class="table-section">
+                        <div class="table-section-header">
+                            <h3>Problem Instances</h3>
+                            <p class="problem-intro"></p>
+                        </div>
+                        <div class="table-wrapper problems-wrapper"></div>
+                    </div>
+                </div>
+
+                <div class="tab-panel" id="variational_problems" data-path="variational_problems" role="tabpanel" aria-hidden="true">
+                    <div class="tracker-intro">
+                        <h2 class="tab-title">Path 2 · Variational Problems</h2>
+                        <p class="tracker-description"></p>
+                        <p class="validation-note"></p>
+                    </div>
+                    <div class="table-section">
+                        <div class="table-section-header">
+                            <h3>Submission Log</h3>
+                            <p class="value-label"></p>
+                        </div>
+                        <div class="table-wrapper submissions-wrapper"></div>
+                    </div>
+                    <div class="table-section">
+                        <div class="table-section-header">
+                            <h3>Problem Instances</h3>
+                            <p class="problem-intro"></p>
+                        </div>
+                        <div class="table-wrapper problems-wrapper"></div>
+                    </div>
+                </div>
+
+                <div class="tab-panel" id="classically_verifiable" data-path="classically_verifiable" role="tabpanel" aria-hidden="true">
+                    <div class="tracker-intro">
+                        <h2 class="tab-title">Path 3 · Classically Verifiable Problems</h2>
+                        <p class="tracker-description"></p>
+                        <p class="validation-note"></p>
+                    </div>
+                    <div class="table-section">
+                        <div class="table-section-header">
+                            <h3>Submission Log</h3>
+                            <p class="value-label"></p>
+                        </div>
+                        <div class="table-wrapper submissions-wrapper"></div>
+                    </div>
+                    <div class="table-section">
+                        <div class="table-section-header">
+                            <h3>Problem Instances</h3>
+                            <p class="problem-intro"></p>
+                        </div>
+                        <div class="table-wrapper problems-wrapper"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Quantum Advantage Framework. Based on IBM–Pasqal collaboration research.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            const indexUrl = 'data/paths/index.json';
+            const tabButtons = Array.from(document.querySelectorAll('.path-tab'));
+            const tabPanels = Array.from(document.querySelectorAll('.tab-panel'));
+
+            function setActiveTab(targetId, { updateHash = true } = {}) {
+                let activePanel = null;
+
+                tabButtons.forEach((btn) => {
+                    const isActive = btn.dataset.target === targetId;
+                    btn.classList.toggle('active', isActive);
+                    btn.setAttribute('aria-selected', isActive ? 'true' : 'false');
+                });
+
+                tabPanels.forEach((panel) => {
+                    const isActive = panel.dataset.path === targetId;
+                    panel.classList.toggle('active', isActive);
+                    panel.setAttribute('aria-hidden', isActive ? 'false' : 'true');
+                    if (isActive) {
+                        activePanel = panel;
+                    }
+                });
+
+                if (updateHash) {
+                    history.replaceState(null, '', `#${targetId}`);
+                }
+
+                return activePanel;
+            }
+
+            tabButtons.forEach((btn) => {
+                btn.addEventListener('click', () => {
+                    setActiveTab(btn.dataset.target);
+                });
+            });
+
+            const hashTarget = window.location.hash ? window.location.hash.substring(1) : null;
+            const initialTarget = tabPanels.some((panel) => panel.dataset.path === hashTarget) ? hashTarget : 'observable_estimations';
+            setActiveTab(initialTarget, { updateHash: false });
+
+            fetch(indexUrl)
+                .then((response) => {
+                    if (!response.ok) {
+                        throw new Error(`Request failed with status ${response.status}`);
+                    }
+                    return response.json();
+                })
+                .then((indexData) => {
+                    if (!indexData.paths) {
+                        return;
+                    }
+
+                    const loaders = indexData.paths.map(async ({ id }) => {
+                        const panel = tabPanels.find((p) => p.dataset.path === id);
+                        if (!panel) {
+                            return null;
+                        }
+                        try {
+                            const [metaRes, problemsRes, submissionsRes] = await Promise.all([
+                                fetch(`data/paths/${id}/meta.json`),
+                                fetch(`data/paths/${id}/problems.json`),
+                                fetch(`data/paths/${id}/submissions.json`),
+                            ]);
+
+                            if (!metaRes.ok || !problemsRes.ok || !submissionsRes.ok) {
+                                throw new Error('Failed to fetch one of the path resources');
+                            }
+
+                            const [meta, problems, submissions] = await Promise.all([
+                                metaRes.json(),
+                                problemsRes.json(),
+                                submissionsRes.json(),
+                            ]);
+
+                            renderPathPanel(panel, { ...meta, problems, submissions });
+                        } catch (loadErr) {
+                            console.error(`Failed to load data for path ${id}:`, loadErr);
+                            const wrappers = panel.querySelectorAll('.submissions-wrapper, .problems-wrapper');
+                            wrappers.forEach((wrapper) => {
+                                wrapper.replaceChildren(panelMessage('Unable to load tracker data for this pathway.'));
+                            });
+                        }
+                        return null;
+                    });
+
+                    return Promise.all(loaders).then(() => {
+                        if (hashTarget && hashTarget !== initialTarget) {
+                            setActiveTab(hashTarget, { updateHash: false });
+                        }
+                    });
+                })
+                .catch((error) => {
+                    console.error('Failed to load tracker index:', error);
+                    tabPanels.forEach((panel) => {
+                        ['submissions-wrapper', 'problems-wrapper'].forEach((cls) => {
+                            const wrapper = panel.querySelector(`.${cls}`);
+                            if (wrapper) {
+                                wrapper.replaceChildren(panelMessage('Unable to load tracker data. Try reloading the page.'));
+                            }
+                        });
+                    });
+                });
+
+            function renderPathPanel(panel, config) {
+                const { problems = [], submissions = [], problemProperties = [] } = config;
+
+                const titleEl = panel.querySelector('.tab-title');
+                if (titleEl && config.title) {
+                    titleEl.textContent = config.title;
+                }
+
+                const descriptionEl = panel.querySelector('.tracker-description');
+                if (descriptionEl) {
+                    descriptionEl.textContent = config.description || '';
+                }
+
+                const validationEl = panel.querySelector('.validation-note');
+                if (validationEl) {
+                    if (config.validationCriteria) {
+                        validationEl.textContent = `Validation criteria: ${config.validationCriteria}`;
+                        validationEl.classList.remove('hidden');
+                    } else {
+                        validationEl.textContent = '';
+                        validationEl.classList.add('hidden');
+                    }
+                }
+
+                const valueLabelEl = panel.querySelector('.value-label');
+                if (valueLabelEl) {
+                    valueLabelEl.textContent = config.valueLabel ? `Value column: ${config.valueLabel}` : '';
+                }
+
+                const problemIntroEl = panel.querySelector('.problem-intro');
+                if (problemIntroEl) {
+                    problemIntroEl.textContent = config.problemIntro || '';
+                }
+
+                const problemsById = Object.fromEntries(problems.map((problem) => [problem.id, problem]));
+                const statsByProblem = aggregateProblemStats(problems, submissions);
+
+                const submissionsWrapper = panel.querySelector('.submissions-wrapper');
+                if (submissionsWrapper) {
+                    submissionsWrapper.replaceChildren(...buildSubmissionsTable(submissions, config, problemsById));
+                }
+
+                const problemsWrapper = panel.querySelector('.problems-wrapper');
+                if (problemsWrapper) {
+                    problemsWrapper.replaceChildren(...buildProblemsTable(problems, problemProperties, statsByProblem));
+                }
+            }
+
+            function buildSubmissionsTable(submissions, config, problemsById) {
+                if (!submissions || submissions.length === 0) {
+                    return [panelMessage('No submissions yet. Submit a PR once you have a verifiable claim.')];
+                }
+
+                const table = document.createElement('table');
+                table.className = 'tracker-table';
+
+                const thead = document.createElement('thead');
+                const headerRow = document.createElement('tr');
+                [
+                    'Circuit',
+                    config.valueLabel ? `Value (${config.valueLabel})` : 'Value',
+                    'Bounds',
+                    'Method',
+                    'Institution',
+                    'Classical & Quantum Time',
+                    'Classical & Quantum Hardware',
+                    'Submission Date',
+                    'Validation',
+                ].forEach((label) => {
+                    const th = document.createElement('th');
+                    th.textContent = label;
+                    headerRow.appendChild(th);
+                });
+                thead.appendChild(headerRow);
+                table.appendChild(thead);
+
+                const tbody = document.createElement('tbody');
+
+                submissions.forEach((submission) => {
+                    const row = document.createElement('tr');
+                    const problem = problemsById[submission.problemId];
+                    row.appendChild(textCell(problem ? problem.name : submission.circuit || submission.problemId || 'Unknown problem'));
+
+                    row.appendChild(textCell(submission.value || '—'));
+
+                    const bounds = submission.bounds || config.defaultBounds || (config.id === 'classically_verifiable' ? '—' : '± 1');
+                    row.appendChild(textCell(bounds));
+
+                    row.appendChild(methodCell(submission.method));
+
+                    row.appendChild(textCell(submission.institution || '—'));
+
+                    row.appendChild(detailCell(submission.time, 'Quantum', 'Classical'));
+
+                    row.appendChild(detailCell(submission.hardware, 'Quantum', 'Classical'));
+
+                    row.appendChild(textCell(submission.submissionDate || '—'));
+
+                    row.appendChild(validationCell(submission.validation));
+
+                    tbody.appendChild(row);
+                });
+
+                table.appendChild(tbody);
+                return [table];
+            }
+
+            function buildProblemsTable(problems, columns, statsByProblem) {
+                if (!problems || problems.length === 0) {
+                    return [panelMessage('Problem metadata will be published with the first submission.')];
+                }
+
+                const table = document.createElement('table');
+                table.className = 'tracker-table secondary-table';
+
+                const thead = document.createElement('thead');
+                const headerRow = document.createElement('tr');
+                const baseHeaders = [
+                    'Circuit',
+                    ...columns.map((col) => col.label),
+                    '# Submissions',
+                    'Best Quantum',
+                    'Best Classical',
+                    'QASM',
+                    'Metadata'
+                ];
+                baseHeaders.forEach((label) => {
+                    const th = document.createElement('th');
+                    th.textContent = label;
+                    headerRow.appendChild(th);
+                });
+                thead.appendChild(headerRow);
+                table.appendChild(thead);
+
+                const tbody = document.createElement('tbody');
+                problems.forEach((problem) => {
+                    const row = document.createElement('tr');
+                    row.appendChild(textCell(problem.name || problem.id));
+
+                    columns.forEach((column) => {
+                        const value = problem.properties && Object.prototype.hasOwnProperty.call(problem.properties, column.key)
+                            ? problem.properties[column.key]
+                            : '—';
+                        row.appendChild(textCell(value));
+                    });
+
+                    const stats = statsByProblem[problem.id] || { count: 0, quantum: '—', classical: '—' };
+                    row.appendChild(textCell(stats.count));
+                    row.appendChild(textCell(stats.quantum));
+                    row.appendChild(textCell(stats.classical));
+
+                    row.appendChild(linkCell(problem.qasm, 'Download'));
+                    row.appendChild(linkCell(problem.metadata, 'Metadata'));
+
+                    tbody.appendChild(row);
+                });
+                table.appendChild(tbody);
+                return [table];
+            }
+
+            function aggregateProblemStats(problems, submissions) {
+                const stats = {};
+                const statusPriority = {
+                    verified: 0,
+                    'under_review': 1,
+                    'under-review': 1,
+                    'under review': 1,
+                    pending: 2,
+                    unverified: 2
+                };
+
+                const grouped = new Map();
+                submissions.forEach((submission) => {
+                    const pid = submission.problemId;
+                    if (!pid) {
+                        return;
+                    }
+                    if (!grouped.has(pid)) {
+                        grouped.set(pid, []);
+                    }
+                    grouped.get(pid).push(submission);
+                });
+
+                const rankFor = (submission) => {
+                    const status = (submission.validation || '').toLowerCase();
+                    return statusPriority.hasOwnProperty(status) ? statusPriority[status] : 3;
+                };
+
+                const dateFor = (submission) => {
+                    const value = submission.submissionDate;
+                    const timestamp = value ? Date.parse(value) : NaN;
+                    return Number.isNaN(timestamp) ? 0 : timestamp;
+                };
+
+                grouped.forEach((entries, pid) => {
+                    const sorted = entries.slice().sort((a, b) => {
+                        const rankDelta = rankFor(a) - rankFor(b);
+                        if (rankDelta !== 0) {
+                            return rankDelta;
+                        }
+                        return dateFor(b) - dateFor(a);
+                    });
+                    const best = sorted[0];
+                    stats[pid] = {
+                        count: entries.length,
+                        quantum: formatResource(best, 'quantum'),
+                        classical: formatResource(best, 'classical')
+                    };
+                });
+
+                problems.forEach((problem) => {
+                    if (!stats[problem.id]) {
+                        stats[problem.id] = {
+                            count: 0,
+                            quantum: '—',
+                            classical: '—'
+                        };
+                    }
+                });
+
+                return stats;
+            }
+
+            function textCell(text) {
+                const td = document.createElement('td');
+                td.textContent = text ?? '—';
+                return td;
+            }
+
+            function methodCell(method) {
+                const td = document.createElement('td');
+                if (method && method.url) {
+                    const link = document.createElement('a');
+                    link.href = method.url;
+                    link.target = '_blank';
+                    link.rel = 'noopener';
+                    link.textContent = method.label || 'View method';
+                    td.appendChild(link);
+                } else if (method && method.label) {
+                    td.textContent = method.label;
+                } else {
+                    const span = document.createElement('span');
+                    span.className = 'method-missing';
+                    span.textContent = 'Method pending';
+                    td.appendChild(span);
+                }
+                return td;
+            }
+
+            function detailCell(details = {}, quantumLabel, classicalLabel) {
+                const td = document.createElement('td');
+                const quantum = details && details.quantum ? details.quantum : '—';
+                const classical = details && details.classical ? details.classical : '—';
+                td.appendChild(detailLine(quantumLabel, quantum));
+                td.appendChild(detailLine(classicalLabel, classical));
+                return td;
+            }
+
+            function detailLine(label, value) {
+                const wrapper = document.createElement('div');
+                const strong = document.createElement('strong');
+                strong.textContent = `${label}:`;
+                wrapper.appendChild(strong);
+                wrapper.appendChild(document.createTextNode(` ${value}`));
+                return wrapper;
+            }
+
+            function validationCell(status) {
+                const td = document.createElement('td');
+                const span = document.createElement('span');
+                span.classList.add('validation-badge');
+
+                const normalized = (status || '').toLowerCase();
+                if (normalized === 'verified') {
+                    span.classList.add('verified');
+                    span.textContent = 'Verified';
+                } else if (normalized === 'under_review' || normalized === 'under-review') {
+                    span.classList.add('under-review');
+                    span.textContent = 'Under Review';
+                } else {
+                    span.classList.add('unverified');
+                    span.textContent = normalized === 'unverified' ? 'Unverified' : 'Pending';
+                }
+
+                td.appendChild(span);
+                return td;
+            }
+
+            function linkCell(href, label) {
+                const td = document.createElement('td');
+                if (href) {
+                    const link = document.createElement('a');
+                    link.href = href;
+                    link.textContent = label;
+                    link.target = '_blank';
+                    link.rel = 'noopener';
+                    if (href.endsWith('.qasm')) {
+                        link.setAttribute('download', '');
+                    }
+                    td.appendChild(link);
+                } else {
+                    td.textContent = '—';
+                }
+                return td;
+            }
+
+            function panelMessage(message) {
+                const p = document.createElement('p');
+                p.className = 'panel-message';
+                p.textContent = message;
+                return p;
+            }
+
+            function formatResource(submission, key) {
+                if (!submission) {
+                    return '—';
+                }
+                const time = submission.time && submission.time[key];
+                const hardware = submission.hardware && submission.hardware[key];
+                if (time && hardware) {
+                    return `${time} · ${hardware}`;
+                }
+                if (time) {
+                    return time;
+                }
+                if (hardware) {
+                    return hardware;
+                }
+                return '—';
+            }
+        });
+    </script>
+
+</body>
+</html>

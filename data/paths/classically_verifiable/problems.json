@@ -1,0 +1,14 @@
+[
+  {
+    "id": "peaked_random_53",
+    "name": "Peaked Random Circuit \u00b7 53 qubits",
+    "qasm": "problems/classically_verifiable/peaked_random_53.qasm",
+    "metadata": "problems/classically_verifiable/peaked_random_53.json",
+    "properties": {
+      "qubits": 53,
+      "structure": "Heavy Hex",
+      "depth": 120,
+      "scoring": ""
+    }
+  }
+]

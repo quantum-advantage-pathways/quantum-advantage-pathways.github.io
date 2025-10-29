@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Participate - Quantum Advantage Framework</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="nav">
+        <div class="container">
+            <a href="index.html" class="nav-logo">Quantum Advantage Framework</a>
+            <ul class="nav-links">
+                <li class="nav-item has-dropdown">
+                    <a href="index.html" class="nav-link">Pathways</a>
+                    <ul class="dropdown">
+                        <li><a href="index.html#pathways">Overview</a></li>
+                        <li><a href="observable_estimations.html">Observable Estimations</a></li>
+                        <li><a href="variational_problems.html">Variational Problems</a></li>
+                        <li><a href="classically_verifiable.html">Classically Verifiable Problems</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item has-dropdown">
+                    <a href="advantage_trackers.html" class="nav-link">Advantage Trackers</a>
+                    <ul class="dropdown">
+                        <li><a href="advantage_trackers.html#observable_estimations">Observable Estimations</a></li>
+                        <li><a href="advantage_trackers.html#variational_problems">Variational Problems</a></li>
+                        <li><a href="advantage_trackers.html#classically_verifiable">Classically Verifiable Problems</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item active">
+                    <a href="participate.html" class="nav-link active">Participate</a>
+                </li>
+            </ul>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>Submit Your Quantum Advantage Claim</h1>
+                <p>Follow these steps to contribute new benchmark instances or submissions to the Advantage Trackers.</p>
+                <a href="https://github.com/quantum-advantage-pathways/quantum-advantage-pathways.github.io#readme" class="btn" target="_blank" rel="noopener">View Repository</a>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Preparation Checklist</h2>
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3>1. Choose a Pathway</h3>
+                        <p>Decide which tracker aligns with your claim:</p>
+                        <ul>
+                            <li><strong>Observable Estimations:</strong> expectation values with rigorous error bars.</li>
+                            <li><strong>Variational Problems:</strong> energy (or cost) estimates bounded by the variational principle.</li>
+                            <li><strong>Classically Verifiable Problems:</strong> outputs validated against known or efficiently checkable solutions.</li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>2. Gather Artifacts</h3>
+                        <p>Each submission must link to a reproducible method and specify:</p>
+                        <ul>
+                            <li>Quantum and classical runtimes.</li>
+                            <li>Quantum and classical hardware details.</li>
+                            <li>Validation evidence that meets the pathway criteria.</li>
+                            <li>A QASM circuit and metadata for the problem instance (if introducing a new benchmark).</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Repository Layout</h2>
+                <p>The tracker data is split into per-path directories under <code>data/paths/</code>.</p>
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3>Problems</h3>
+                        <p>Each problem instance lives in its own JSON file.</p>
+                        <ul>
+                            <li><code>data/paths/&lt;path-id&gt;/problems/&lt;problem-id&gt;.json</code></li>
+                            <li>Mirror metadata in <code>problems/&lt;path-id&gt;/&lt;problem-id&gt;.json</code></li>
+                            <li>Provide a matching QASM file at <code>problems/&lt;path-id&gt;/&lt;problem-id&gt;.qasm</code></li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3>Submissions</h3>
+                        <p>One JSON file per claim:</p>
+                        <ul>
+                            <li><code>data/paths/&lt;path-id&gt;/submissions/yyyy-mm-dd_problem_institution.json</code></li>
+                            <li>Populate the fields listed in the pull request template.</li>
+                            <li>Do not remove earlier claims—update or supersede them explicitly.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Submit a Pull Request</h2>
+                <div class="grid grid-2">
+                    <div class="card">
+                        <h3>1. Update Data Files</h3>
+                        <ol>
+                            <li>Edit or add problem and submission JSON files.</li>
+                            <li>Drop new QASM files into <code>problems/&lt;path-id&gt;/</code>.</li>
+                            <li>Run <code>python3 scripts/build_trackers.py</code> to refresh aggregated tables.</li>
+                        </ol>
+                    </div>
+                    <div class="card">
+                        <h3>2. Open the PR</h3>
+                        <ol>
+                            <li>Use the repository pull request template to summarize your claim.</li>
+                            <li>Attach links to papers, code, and validation evidence.</li>
+                            <li>Ensure <code>git status</code> is clean after formatting to pass CI.</li>
+                        </ol>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section">
+            <div class="container">
+                <h2>Review Expectations</h2>
+                <p class="text-center">Claims are merged once the pathway maintainers confirm reproducibility, validation criteria, and data fidelity.</p>
+                <div class="grid grid-3">
+                    <div class="card">
+                        <h3>Evidence</h3>
+                        <p>Provide logs, notebooks, or data products that allow reviewers to recompute key metrics.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Traceability</h3>
+                        <p>Reference commit hashes, tagged releases, or archived datasets so results remain accessible.</p>
+                    </div>
+                    <div class="card">
+                        <h3>Transparency</h3>
+                        <p>Document assumptions, calibration routines, and sources of uncertainty in your method description.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Quantum Advantage Framework. Based on IBM–Pasqal collaboration research.</p>
+        </div>
+    </footer>
+</body>
+</html>

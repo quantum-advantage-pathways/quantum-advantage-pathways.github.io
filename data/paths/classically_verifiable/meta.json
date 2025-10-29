@@ -1,0 +1,27 @@
+{
+  "validationCriteria": "Verified entries are scored against a classical oracle using held-out samples.",
+  "defaultBounds": "\u2014",
+  "id": "classically_verifiable",
+  "problemProperties": [
+    {
+      "key": "qubits",
+      "label": "Qubits"
+    },
+    {
+      "key": "structure",
+      "label": "Structure"
+    },
+    {
+      "key": "depth",
+      "label": "Circuit Depth"
+    },
+    {
+      "key": "scoring",
+      "label": "Scoring"
+    }
+  ],
+  "title": "Path 3 \u00b7 Classically Verifiable Problems",
+  "valueLabel": "Hamming distance",
+  "description": "Classically verifiable problems demonstrate quantum advantage by scoring solutions against known answers or efficiently checkable witnesses.",
+  "problemIntro": "Structured sampling and decision benchmarks with known verification routines for efficient classical scoring."
+}

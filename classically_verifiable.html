@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Efficient Classical Verification - Quantum Advantage Framework</title>
+    <title>Classically Verifiable Problems - Quantum Advantage Framework</title>
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
 </head>
@@ -12,11 +12,26 @@
         <div class="container">
             <a href="index.html" class="nav-logo">Quantum Advantage Framework</a>
             <ul class="nav-links">
-                <li><a href="index.html">Overview</a></li>
-                <li><a href="confidence_bounds.html">Confidence Bounds</a></li>
-                <li><a href="algorithmic_methods.html">Algorithmic Methods</a></li>
-                <li><a href="classical_verification.html" class="active">Classical Verification</a></li>
-                <li><a href="leaderboard/peak_circuits/">Peak Circuits</a></li>
+                <li class="nav-item has-dropdown active">
+                    <a href="index.html" class="nav-link">Pathways</a>
+                    <ul class="dropdown">
+                        <li><a href="index.html#pathways">Overview</a></li>
+                        <li><a href="observable_estimations.html">Observable Estimations</a></li>
+                        <li><a href="variational_problems.html">Variational Problems</a></li>
+                        <li><a href="classically_verifiable.html" class="active">Classically Verifiable Problems</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item has-dropdown">
+                    <a href="advantage_trackers.html" class="nav-link">Advantage Trackers</a>
+                    <ul class="dropdown">
+                        <li><a href="advantage_trackers.html#observable_estimations">Observable Estimations</a></li>
+                        <li><a href="advantage_trackers.html#variational_problems">Variational Problems</a></li>
+                        <li><a href="advantage_trackers.html#classically_verifiable">Classically Verifiable Problems</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="participate.html" class="nav-link">Participate</a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -24,7 +39,7 @@
     <main>
         <section class="hero">
             <div class="container">
-                <h1>Efficient Classical Verification</h1>
+                <h1>Classically Verifiable Problems</h1>
                 <p>Leveraging Classical Resources to Validate Quantum Outputs</p>
                 <a href="https://arxiv.org/pdf/2506.20658" class="btn" target="_blank">Read the Research Paper</a>
             </div>
@@ -50,7 +65,7 @@
                             <p>"Peaked random circuits... enable new opportunities for demonstrating verifiable quantum advantage, as the 'peakedness' can be detected through an analysis of the sampled outputs."</p>
                         </div>
                         <div class="text-center mt-md">
-                            <a href="leaderboard/peak_circuits/" class="btn">Peak Circuits Leaderboard →</a>
+                            <a href="leaderboard/classically_verifiable/" class="btn">Classically Verifiable Tracker →</a>
                         </div>
                     </div>
 
@@ -104,7 +119,7 @@
                 <p class="text-center">This pathway provides a <strong>scalable and efficient route to validation</strong>, enabling quantum advantage claims to be tested using classical resources. As emphasized in the paper, such problems are ideal for early demonstrations of quantum advantage, where <strong>trust in the output</strong> can be established without full quantum-classical parity.</p>
                 
                 <div class="text-center mt-lg">
-                    <a href="algorithmic_methods.html" class="btn-outline btn">← Previous: Algorithmic Methods</a>
+                    <a href="variational_problems.html" class="btn-outline btn">← Previous: Variational Problems</a>
                     <a href="index.html" class="btn">Back to Overview →</a>
                 </div>
             </div>

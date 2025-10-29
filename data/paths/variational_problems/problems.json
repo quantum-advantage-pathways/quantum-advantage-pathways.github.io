@@ -1,0 +1,9 @@
+[
+  {
+    "id": "some_hamiltonian",
+    "name": "Some Hamiltonian",
+    "qasm": "problems/variational_problems/some_hamiltonian.qasm",
+    "metadata": "problems/variational_problems/some_hamiltonian.json",
+    "properties": {}
+  }
+]

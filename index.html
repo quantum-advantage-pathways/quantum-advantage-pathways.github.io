@@ -12,11 +12,26 @@
         <div class="container">
             <a href="index.html" class="nav-logo">Quantum Advantage Framework</a>
             <ul class="nav-links">
-                <li><a href="index.html" class="active">Overview</a></li>
-                <li><a href="confidence_bounds.html">Confidence Bounds</a></li>
-                <li><a href="algorithmic_methods.html">Algorithmic Methods</a></li>
-                <li><a href="classical_verification.html">Classical Verification</a></li>
-                <li><a href="leaderboard/peak_circuits/">Peak Circuits</a></li>
+                <li class="nav-item has-dropdown active">
+                    <a href="index.html" class="nav-link">Pathways</a>
+                    <ul class="dropdown">
+                        <li><a href="#pathways">Overview</a></li>
+                        <li><a href="observable_estimations.html">Observable Estimations</a></li>
+                        <li><a href="variational_problems.html">Variational Problems</a></li>
+                        <li><a href="classically_verifiable.html">Classically Verifiable Problems</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item has-dropdown">
+                    <a href="advantage_trackers.html" class="nav-link">Advantage Trackers</a>
+                    <ul class="dropdown">
+                        <li><a href="advantage_trackers.html#observable_estimations">Observable Estimations</a></li>
+                        <li><a href="advantage_trackers.html#variational_problems">Variational Problems</a></li>
+                        <li><a href="advantage_trackers.html#classically_verifiable">Classically Verifiable Problems</a></li>
+                    </ul>
+                </li>
+                <li class="nav-item">
+                    <a href="participate.html" class="nav-link">Participate</a>
+                </li>
             </ul>
         </div>
     </nav>
@@ -30,7 +45,7 @@
             </div>
         </section>
 
-        <section class="section">
+        <section class="section" id="pathways">
             <div class="container">
                 <h2>What is Quantum Advantage?</h2>
                 <p>Quantum advantage refers to performing an information processing task <strong>more efficiently, cost-effectively, or accurately</strong> using a quantum computer than is known to be possible with classical computers alone.</p>
@@ -53,24 +68,24 @@
                 
                 <div class="grid grid-3">
                     <div class="card">
-                        <h3>Provable Confidence Bounds</h3>
+                        <h3>Observable Estimations</h3>
                         <p><strong>Trust through rigorous error control.</strong></p>
-                        <p>Explore how error correction, mitigation, and detection techniques provide mathematically guaranteed validation of quantum computations—even at scales beyond classical simulation.</p>
-                        <a href="confidence_bounds.html" class="btn">Read more →</a>
+                        <p>Explore how expectation-value experiments include mathematically grounded error bars that make quantum outputs falsifiable.</p>
+                        <a href="observable_estimations.html" class="btn">Read more →</a>
                     </div>
 
                     <div class="card">
-                        <h3>Algorithmic Methods</h3>
+                        <h3>Variational Problems</h3>
                         <p><strong>Certifiable quantum solutions via the variational principle.</strong></p>
                         <p>Learn how variational algorithms offer guaranteed solution bounds and enable benchmarking against classical methods—even when exact answers are unknown.</p>
-                        <a href="algorithmic_methods.html" class="btn">Read more →</a>
+                        <a href="variational_problems.html" class="btn">Read more →</a>
                     </div>
 
                     <div class="card">
-                        <h3>Efficient Classical Verification</h3>
+                        <h3>Classically Verifiable Problems</h3>
                         <p><strong>When quantum outputs are hard to find but easy to check.</strong></p>
-                        <p>Discover how certain quantum problems—like peaked circuit sampling or integer factorization—allow for efficient classical verification of quantum-generated results.</p>
-                        <a href="classical_verification.html" class="btn">Read more →</a>
+                        <p>Discover how certain quantum problems allow efficient classical scoring, enabling strong evidence of quantum advantage.</p>
+                        <a href="classically_verifiable.html" class="btn">Read more →</a>
                     </div>
                 </div>
             </div>

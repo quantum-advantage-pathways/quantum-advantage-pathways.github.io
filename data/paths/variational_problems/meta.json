@@ -1,0 +1,27 @@
+{
+  "validationCriteria": "Verification requires demonstrating the method is variational and reproducible.",
+  "defaultBounds": "\u00b1 1",
+  "id": "variational_problems",
+  "problemProperties": [
+    {
+      "key": "orbitals",
+      "label": "Active Orbitals"
+    },
+    {
+      "key": "ansatz",
+      "label": "Ansatz"
+    },
+    {
+      "key": "symmetry",
+      "label": "Symmetry"
+    },
+    {
+      "key": "reference",
+      "label": "Reference"
+    }
+  ],
+  "title": "Path 2 \u00b7 Variational Problems",
+  "valueLabel": "Energy",
+  "description": "Variational algorithms must bound the ground-state energy from above. Verified entries include evidence that the ansatz and optimization respect the variational principle.",
+  "problemIntro": "Ground-state energy estimation tasks with well-defined active spaces and ansatz structures."
+}

@@ -211,16 +211,281 @@ p {
   gap: var(--spacing-lg);
 }
 
+.nav-item {
+  position: relative;
+}
+
+.nav-link,
 .nav-links a {
   text-decoration: none;
   color: var(--text-primary);
   font-weight: 500;
   transition: color 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  gap: var(--spacing-xs);
 }
 
+.nav-link:hover,
 .nav-links a:hover,
-.nav-links a.active {
+.nav-link.active,
+.nav-links a.active,
+.nav-item.active > .nav-link {
   color: var(--primary-blue);
+}
+
+.has-dropdown .dropdown {
+  display: none;
+  position: absolute;
+  top: calc(100% + 0.5rem);
+  left: 0;
+  flex-direction: column;
+  background: white;
+  padding: var(--spacing-sm);
+  border-radius: 8px;
+  box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+  list-style: none;
+  min-width: 230px;
+  border: 1px solid rgba(15, 98, 254, 0.06);
+  z-index: 200;
+}
+
+.has-dropdown:hover .dropdown,
+.has-dropdown:focus-within .dropdown {
+  display: flex;
+}
+
+.dropdown li {
+  margin: 0;
+}
+
+.dropdown a {
+  display: block;
+  padding: 0.5rem 0.75rem;
+  border-radius: 6px;
+  color: var(--text-secondary);
+  font-weight: 500;
+  transition: background 0.2s ease, color 0.2s ease;
+}
+
+.dropdown a:hover,
+.dropdown a.active {
+  background: rgba(15, 98, 254, 0.1);
+  color: var(--primary-blue);
+}
+
+/* Tabs & Trackers */
+.path-tabs {
+  display: inline-flex;
+  border-bottom: 1px solid var(--border-subtle);
+  margin-top: var(--spacing-lg);
+  gap: var(--spacing-sm);
+  padding: 0 var(--spacing-sm);
+  justify-content: center;
+}
+
+.path-tab {
+  position: relative;
+  border: none;
+  background: transparent;
+  color: var(--text-secondary);
+  font-weight: 600;
+  padding: var(--spacing-sm) var(--spacing-md);
+  cursor: pointer;
+  transition: color 0.2s ease;
+}
+
+.path-tab::after {
+  content: "";
+  position: absolute;
+  left: 50%;
+  bottom: -1px;
+  width: 0;
+  height: 3px;
+  background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+  transition: width 0.2s ease, left 0.2s ease;
+}
+
+.path-tab:hover {
+  color: var(--primary-blue);
+}
+
+.path-tab.active {
+  color: var(--primary-blue);
+}
+
+.path-tab.active::after {
+  width: 100%;
+  left: 0;
+}
+
+.hero-subtext {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  margin-bottom: var(--spacing-md);
+}
+
+.hero-subtext code {
+  font-family: 'IBM Plex Mono', Menlo, monospace;
+  background: rgba(15, 98, 254, 0.12);
+  color: var(--primary-blue);
+  padding: 0.1rem 0.4rem;
+  border-radius: 4px;
+}
+
+.trackers .container {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-xxl);
+}
+
+.tab-panel {
+  display: none;
+}
+
+.tab-panel.active {
+  display: block;
+}
+
+.tracker-intro {
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.validation-note {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+}
+
+.value-label {
+  font-size: 0.9rem;
+  color: var(--text-secondary);
+}
+
+.table-section {
+  margin-top: var(--spacing-lg);
+  display: flex;
+  flex-direction: column;
+  gap: var(--spacing-sm);
+}
+
+.table-section-header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+
+.table-section-header h3 {
+  margin-bottom: 0;
+}
+
+.table-section + .table-section {
+  margin-top: var(--spacing-xl);
+}
+
+.table-wrapper {
+  margin-top: var(--spacing-md);
+  overflow-x: auto;
+}
+
+.tracker-table {
+  width: 100%;
+  border-collapse: collapse;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.1);
+  min-width: 960px;
+}
+
+.tracker-table th {
+  background: linear-gradient(135deg, var(--primary-blue), var(--primary-purple));
+  color: var(--text-light);
+  padding: var(--spacing-md);
+  text-align: left;
+  font-weight: 600;
+  font-size: 1rem;
+  white-space: nowrap;
+}
+
+.tracker-table td {
+  padding: var(--spacing-md);
+  border-bottom: 1px solid var(--border-subtle);
+  vertical-align: top;
+  color: var(--text-primary);
+  font-size: 1rem;
+}
+
+.tracker-table tbody tr:nth-child(even) {
+  background-color: #f8f9ff;
+}
+
+.tracker-table tbody tr:hover {
+  background-color: #e8f4ff;
+}
+
+.tracker-table td div {
+  color: var(--text-secondary);
+  font-size: 0.95rem;
+}
+
+.validation-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.35rem 0.85rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.validation-badge.verified {
+  background: rgba(25, 128, 56, 0.12);
+  color: #198038;
+}
+
+.validation-badge.under-review {
+  background: rgba(178, 134, 0, 0.16);
+  color: #b28600;
+}
+
+.validation-badge.unverified,
+.validation-badge.pending {
+  background: rgba(250, 77, 86, 0.12);
+  color: #fa4d56;
+}
+
+.method-missing {
+  color: #fa4d56;
+  font-weight: 500;
+}
+
+.tracker-table a {
+  color: var(--primary-blue);
+  font-weight: 500;
+}
+
+.tracker-table a:hover {
+  text-decoration: underline;
+}
+
+.secondary-table {
+  min-width: 960px;
+}
+
+.panel-message {
+  background: rgba(15, 98, 254, 0.08);
+  border-radius: 8px;
+  padding: var(--spacing-md);
+  color: var(--primary-blue);
+  font-weight: 500;
+}
+
+.hidden {
+  display: none !important;
 }
 
 /* Code blocks */
@@ -294,9 +559,34 @@ li strong {
   .nav-links {
     gap: var(--spacing-md);
   }
+
+  .has-dropdown .dropdown {
+    position: static;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--spacing-sm);
+    padding: 0;
+    box-shadow: none;
+    border: none;
+    background: transparent;
+  }
+
+  .dropdown a {
+    padding: 0.5rem 0;
+  }
   
   .grid-3 {
     grid-template-columns: 1fr;
+  }
+
+  .path-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+
+  .tracker-table {
+    min-width: 720px;
   }
 }
 

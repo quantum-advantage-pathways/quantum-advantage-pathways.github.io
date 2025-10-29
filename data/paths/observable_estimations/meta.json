@@ -1,0 +1,27 @@
+{
+  "validationCriteria": "Verified entries include provable error bounds on the reported observable.",
+  "defaultBounds": "\u00b1 1",
+  "id": "observable_estimations",
+  "problemProperties": [
+    {
+      "key": "qubits",
+      "label": "Qubits"
+    },
+    {
+      "key": "topology",
+      "label": "Topology"
+    },
+    {
+      "key": "depth",
+      "label": "Circuit Depth"
+    },
+    {
+      "key": "observable",
+      "label": "Observable"
+    }
+  ],
+  "title": "Path 1 \u00b7 Observable Estimations",
+  "valueLabel": "Observable value",
+  "description": "Claims in this tracker report expectation values for observables alongside rigorous error bars. Validation requires mathematically provable confidence intervals over the reported value.",
+  "problemIntro": "Expectation value estimation problems with explicit observable definitions and circuit resources."
+}

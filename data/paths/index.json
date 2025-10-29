@@ -1,0 +1,13 @@
+{
+  "paths": [
+    {
+      "id": "observable_estimations"
+    },
+    {
+      "id": "variational_problems"
+    },
+    {
+      "id": "classically_verifiable"
+    }
+  ]
+}

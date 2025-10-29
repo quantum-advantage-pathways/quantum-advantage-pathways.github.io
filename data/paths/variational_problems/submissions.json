@@ -1,0 +1,22 @@
+[
+  {
+    "problemId": "some_hamiltonian",
+    "value": "-1123.418 Ha",
+    "bounds": "",
+    "method": {
+      "label": "Some Method",
+      "url": "https://www.ibm.com"
+    },
+    "institution": "IBM",
+    "time": {
+      "quantum": "38 min",
+      "classical": "6 h"
+    },
+    "hardware": {
+      "quantum": "ibm_boston",
+      "classical": "8x NVIDIA H100"
+    },
+    "submissionDate": "2025-04-27",
+    "validation": "verified"
+  }
+]
