@@ -11,14 +11,17 @@ When a user creates a new issue using one of the templates, GitHub automatically
 - **Path 1 - Observable Estimations**: Automatically tagged with:
   - `pathway: observable-estimations`
   - `submission`
+  - Then GitHub Actions adds: `Path 1 submission`
 
 - **Path 2 - Variational Problems**: Automatically tagged with:
   - `pathway: variational-problems`
   - `submission`
+  - Then GitHub Actions adds: `Path 2 submission`
 
 - **Path 3 - Classically Verifiable**: Automatically tagged with:
   - `pathway: classically-verifiable`
   - `submission`
+  - Then GitHub Actions adds: `Path 3 submission`
 
 ### 2. **Template Chooser Configuration**
 
@@ -78,11 +81,14 @@ The GitHub Action workflow (`.github/workflows/validate-submission.yml`) automat
 User Creates Issue
         ↓
 Template Auto-Applies Labels
+(pathway: X, submission)
         ↓
 GitHub Action Triggers
         ↓
 Validates Pathway Label ──→ Missing? ──→ Warning Comment
         ↓ Present
+Adds "Path N submission" Label
+        ↓
 Extracts Circuit ID ──→ Missing? ──→ Warning Comment
         ↓ Present
 Checks Circuit Exists in Pathway
@@ -91,12 +97,19 @@ Checks Circuit Exists in Pathway
    ↓         ↓
  Exists   Not Found
    ↓         ↓
-✅ Label  ⚠️ Label
-Validated  needs-review
+✅ Add    ⚠️ Add
+validated  needs-review
+  label      label
    ↓         ↓
 Success   Warning
 Comment   Comment
 ```
+
+### Label Application Timeline
+
+1. **Issue Created** → Template applies: `pathway: X`, `submission`
+2. **Workflow Runs** → Bot adds: `Path N submission`
+3. **Validation Result** → Bot adds: `validated` OR `needs-review` + `incomplete` (if fields missing)
 
 ## Label System
 
@@ -106,7 +119,10 @@ Comment   Comment
 - `pathway: classically-verifiable`
 - `submission`
 
-### Bot-Applied Labels
+### Bot-Applied Labels (GitHub Actions)
+- `Path 1 submission` - Applied to Observable Estimations submissions
+- `Path 2 submission` - Applied to Variational Problems submissions
+- `Path 3 submission` - Applied to Classically Verifiable submissions
 - `validated` - Submission passed all validation checks
 - `needs-review` - Circuit not found or other issues detected
 - `incomplete` - Required fields are missing
