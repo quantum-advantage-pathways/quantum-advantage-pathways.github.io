@@ -15,160 +15,110 @@ body:
         Please provide detailed information about your submission below.
 
   - type: input
-    id: problem-name
+    id: circuit
     attributes:
-      label: Problem Name
-      description: Name of the problem instance you're solving
-      placeholder: e.g., "Peaked Random Circuit · 53 qubits"
-    validations:
-      required: true
-
-  - type: dropdown
-    id: verification-approach
-    attributes:
-      label: Verification Approach
-      description: Which type of verifiable problem are you solving?
-      options:
-        - Sampling Problems with Structure
-        - Algebraic Problems
-        - Observable Measurements
-        - Other (specify in description)
-    validations:
-      required: true
-
-  - type: textarea
-    id: problem-description
-    attributes:
-      label: Problem Description
-      description: Describe the problem instance (qubits, circuit structure, depth, scoring method)
-      placeholder: |
-        - Number of qubits:
-        - Circuit structure/topology:
-        - Circuit depth:
-        - Scoring method:
-        - Problem type (e.g., factorization, optimization, sampling):
-    validations:
-      required: true
-
-  - type: textarea
-    id: quantum-solution
-    attributes:
-      label: Quantum Solution
-      description: Describe your quantum solution and results
-      placeholder: |
-        - Solution output:
-        - Sample quality/fidelity:
-        - Success probability:
-    validations:
-      required: true
-
-  - type: textarea
-    id: verification-method
-    attributes:
-      label: Classical Verification Method
-      description: How is the solution verified classically?
-      placeholder: |
-        Describe the verification procedure:
-        - Verification algorithm:
-        - Verification complexity:
-        - Held-out samples used:
-        - Verification result/score:
-    validations:
-      required: true
-
-  - type: textarea
-    id: quantum-runtime
-    attributes:
-      label: Quantum Runtime & Hardware
-      description: Specify quantum execution details
-      placeholder: |
-        - Quantum runtime:
-        - Quantum hardware:
-        - Number of qubits used:
-        - Circuit depth:
-        - Number of shots/samples:
-    validations:
-      required: true
-
-  - type: textarea
-    id: classical-baseline
-    attributes:
-      label: Classical Baseline Comparison
-      description: Compare quantum generation with classical attempts
-      placeholder: |
-        - Classical method(s) attempted:
-        - Classical success rate:
-        - Classical runtime:
-        - Classical hardware:
-        - Advantage demonstration:
-    validations:
-      required: true
-
-  - type: textarea
-    id: scoring-results
-    attributes:
-      label: Scoring Results
-      description: How does your solution score against the classical oracle?
-      placeholder: |
-        - Score/metric:
-        - Oracle method:
-        - Statistical significance:
+      label: Circuit
+      description: The problem instance this submission addresses
+      placeholder: e.g., "peaked_random_53"
     validations:
       required: true
 
   - type: input
-    id: circuit-file
+    id: value
     attributes:
-      label: Circuit File Path
-      description: Path to the circuit file in the repository
-      placeholder: problems/classically_verifiable/your_circuit.qasm
+      label: Value
+      description: The claimed value (hamming distance for peak circuits)
+      placeholder: e.g., "0.0023"
+    validations:
+      required: true
+
+  - type: input
+    id: observable-value
+    attributes:
+      label: Observable Value
+      description: Observable value measurement
+      placeholder: e.g., "0.156"
     validations:
       required: false
 
   - type: textarea
-    id: artifacts
+    id: method
     attributes:
-      label: Additional Artifacts & Links
-      description: Links to code repositories, papers, data files, or other supporting materials
+      label: Method
+      description: Link to paper, code repository, or detailed explanation of the method (required for verification)
       placeholder: |
-        - Code repository:
-        - Paper/preprint:
-        - Data files:
-        - Verification code:
-        - Documentation:
+        Provide at least one of:
+        - Paper/preprint: https://arxiv.org/abs/...
+        - Code repository: https://github.com/...
+        - Method explanation: Detailed description of the approach
     validations:
       required: true
 
-  - type: textarea
-    id: reproducibility
+  - type: input
+    id: institution
     attributes:
-      label: Reproducibility Instructions
-      description: Step-by-step instructions for reproducing and verifying your results
-      placeholder: |
-        1. Setup environment...
-        2. Generate quantum solution...
-        3. Run classical verification...
-        4. Compare with baselines...
+      label: Institution
+      description: Your institution or organization
+      placeholder: e.g., "IBM Quantum"
+    validations:
+      required: true
+
+  - type: input
+    id: quantum-time
+    attributes:
+      label: Quantum Time
+      description: Quantum execution time
+      placeholder: e.g., "5.2 seconds"
+    validations:
+      required: true
+
+  - type: input
+    id: classical-time
+    attributes:
+      label: Classical Time
+      description: Classical computation time
+      placeholder: e.g., "2.5 hours"
+    validations:
+      required: false
+
+  - type: input
+    id: quantum-hardware
+    attributes:
+      label: Quantum Hardware
+      description: Quantum hardware specification
+      placeholder: e.g., "IBM Heron r2"
+    validations:
+      required: true
+
+  - type: input
+    id: classical-hardware
+    attributes:
+      label: Classical Hardware
+      description: Classical hardware specification
+      placeholder: e.g., "AMD EPYC 7763, 128 cores"
+    validations:
+      required: false
+
+  - type: input
+    id: submission-date
+    attributes:
+      label: Submission Date
+      description: Date of submission (YYYY-MM-DD)
+      placeholder: "2025-10-29"
     validations:
       required: true
 
   - type: checkboxes
-    id: submission-checklist
+    id: validation
     attributes:
-      label: Submission Checklist
-      description: Please confirm the following before submitting
+      label: Validation
+      description: Verification checklist for Path 3 (answer scored against true solution)
       options:
-        - label: I have provided a clear classical verification method
+        - label: Answer is scored against true solution
           required: true
-        - label: I have demonstrated quantum advantage over classical generation
+        - label: Method documentation provided (paper/code/explanation)
           required: true
-        - label: I have included scoring against a classical oracle with held-out samples
-          required: true
-        - label: I have included all necessary artifacts for reproducibility
-          required: true
-        - label: I have documented hardware specifications and runtime metrics
-          required: true
-        - label: I have reviewed the pathway criteria at https://quantum-advantage-pathways.github.io/classically_verifiable.html
+        - label: Results are reproducible
           required: true
 
   - type: markdown
