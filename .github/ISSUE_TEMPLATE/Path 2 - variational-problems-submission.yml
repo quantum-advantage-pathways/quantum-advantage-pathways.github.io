@@ -14,6 +14,15 @@ body:
 
         Please provide detailed information about your submission below.
 
+  - type: checkboxes
+    id: submission-Path
+    attributes:
+      label: Check the Path submission
+      description: Validate that this submission is for the Path 2 - Variational Problems Pathway
+      options:
+        - label: Path 2 submission
+          required: true
+
   - type: input
     id: circuit
     attributes:

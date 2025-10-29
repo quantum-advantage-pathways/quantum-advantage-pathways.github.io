@@ -1,0 +1,8 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 📚 Documentation & Guidelines
+    url: https://quantum-advantage-pathways.github.io/participate.html
+    about: Read the submission guidelines and pathway criteria before submitting
+  - name: 💬 Discussion Forum
+    url: https://github.com/quantum-advantage-pathways/quantum-advantage-pathways.github.io/discussions
+    about: Ask questions or discuss ideas with the community
