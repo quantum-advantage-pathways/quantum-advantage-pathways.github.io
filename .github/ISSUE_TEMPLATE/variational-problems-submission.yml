@@ -15,141 +15,119 @@ body:
         Please provide detailed information about your submission below.
 
   - type: input
-    id: problem-name
+    id: circuit
     attributes:
-      label: Problem Name
-      description: Name of the Hamiltonian or problem instance you're solving
-      placeholder: e.g., "LiH Molecule Ground State Energy"
-    validations:
-      required: true
-
-  - type: dropdown
-    id: variational-method
-    attributes:
-      label: Variational Method
-      description: Which variational algorithm did you use?
-      options:
-        - Quantum Phase Estimation (QPE)
-        - Variational Quantum Eigensolver (VQE)
-        - Sample-based Quantum Diagonalization (SQD)
-        - Sample-based Krylov Quantum Diagonalization (SKQD)
-        - Other (specify in description)
-    validations:
-      required: true
-
-  - type: textarea
-    id: problem-description
-    attributes:
-      label: Problem Description
-      description: Describe the problem instance (active orbitals, ansatz structure, symmetry properties, reference state)
-      placeholder: |
-        - Active orbitals:
-        - Ansatz structure:
-        - Symmetry properties:
-        - Reference state:
-    validations:
-      required: true
-
-  - type: textarea
-    id: energy-result
-    attributes:
-      label: Energy Estimation Result
-      description: Report the ground-state energy upper bound with uncertainty
-      placeholder: |
-        - Energy value:
-        - Statistical uncertainty:
-        - Energy units:
-    validations:
-      required: true
-
-  - type: textarea
-    id: quantum-runtime
-    attributes:
-      label: Quantum Runtime & Hardware
-      description: Specify quantum execution details
-      placeholder: |
-        - Quantum runtime:
-        - Quantum hardware:
-        - Number of qubits used:
-        - Circuit depth:
-        - Number of iterations/shots:
-    validations:
-      required: true
-
-  - type: textarea
-    id: classical-comparison
-    attributes:
-      label: Classical Comparison
-      description: Compare your quantum results with classical methods
-      placeholder: |
-        - Classical method(s):
-        - Classical energy result:
-        - Classical runtime:
-        - Classical hardware:
-        - Advantage metric:
-    validations:
-      required: true
-
-  - type: textarea
-    id: variational-proof
-    attributes:
-      label: Variational Principle Demonstration
-      description: How do you prove your method is variational and the energy is an upper bound?
-      placeholder: Provide mathematical justification, references, or experimental evidence demonstrating the variational property
+      label: Circuit
+      description: The problem instance this submission addresses
+      placeholder: e.g., "lih_molecule"
     validations:
       required: true
 
   - type: input
-    id: hamiltonian-file
+    id: energy
     attributes:
-      label: Hamiltonian File Path
-      description: Path to the problem definition file in the repository
-      placeholder: problems/variational_problems/your_hamiltonian.qasm
+      label: Energy
+      description: The ground-state energy value (upper bound)
+      placeholder: e.g., "-7.8823"
+    validations:
+      required: true
+
+  - type: input
+    id: bounds-low
+    attributes:
+      label: Bounds (Low)
+      description: Lower error bound (optional, default -1 if not provided)
+      placeholder: e.g., "-0.001"
+    validations:
+      required: false
+
+  - type: input
+    id: bounds-high
+    attributes:
+      label: Bounds (High)
+      description: Upper error bound (optional, default +1 if not provided)
+      placeholder: e.g., "+0.001"
     validations:
       required: false
 
   - type: textarea
-    id: artifacts
+    id: method
     attributes:
-      label: Additional Artifacts & Links
-      description: Links to code repositories, papers, data files, or other supporting materials
+      label: Method
+      description: Link to paper, code repository, or detailed explanation of the method (required for verification)
       placeholder: |
-        - Code repository:
-        - Paper/preprint:
-        - Data files:
-        - Hamiltonian specification:
-        - Documentation:
+        Provide at least one of:
+        - Paper/preprint: https://arxiv.org/abs/...
+        - Code repository: https://github.com/...
+        - Method explanation: Detailed description of the approach
     validations:
       required: true
 
-  - type: textarea
-    id: reproducibility
+  - type: input
+    id: institution
     attributes:
-      label: Reproducibility Instructions
-      description: Step-by-step instructions for reproducing your results
-      placeholder: |
-        1. Setup environment...
-        2. Define Hamiltonian...
-        3. Run variational optimization...
-        4. Verify results...
+      label: Institution
+      description: Your institution or organization
+      placeholder: e.g., "IBM Quantum"
+    validations:
+      required: true
+
+  - type: input
+    id: quantum-time
+    attributes:
+      label: Quantum Time (seconds)
+      description: Quantum execution time in seconds
+      placeholder: e.g., "5.2"
+    validations:
+      required: true
+
+  - type: input
+    id: classical-time
+    attributes:
+      label: Classical Time (seconds)
+      description: Classical computation time in seconds
+      placeholder: e.g., "9000"
+    validations:
+      required: false
+
+  - type: input
+    id: quantum-hardware
+    attributes:
+      label: Quantum Hardware
+      description: Quantum hardware specification
+      placeholder: e.g., "IBM Heron r2"
+    validations:
+      required: true
+
+  - type: input
+    id: classical-hardware
+    attributes:
+      label: Classical Hardware
+      description: Classical hardware specification
+      placeholder: e.g., "AMD EPYC 7763, 128 cores"
+    validations:
+      required: false
+
+  - type: input
+    id: submission-date
+    attributes:
+      label: Submission Date
+      description: Date of submission (YYYY-MM-DD)
+      placeholder: "2025-10-29"
     validations:
       required: true
 
   - type: checkboxes
-    id: submission-checklist
+    id: validation
     attributes:
-      label: Submission Checklist
-      description: Please confirm the following before submitting
+      label: Validation
+      description: Verification checklist for Path 2 (method is variational)
       options:
-        - label: I have demonstrated that my method satisfies the variational principle
+        - label: Method is variational (energy is upper bound)
           required: true
-        - label: I have provided comparison with classical baseline methods
+        - label: Method documentation provided (paper/code/explanation)
           required: true
-        - label: I have included all necessary artifacts for reproducibility
-          required: true
-        - label: I have documented hardware specifications and runtime metrics
-          required: true
-        - label: I have reviewed the pathway criteria at https://quantum-advantage-pathways.github.io/variational_problems.html
+        - label: Results are reproducible
           required: true
 
   - type: markdown

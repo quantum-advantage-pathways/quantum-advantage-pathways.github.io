@@ -15,131 +15,119 @@ body:
         Please provide detailed information about your submission below.
 
   - type: input
-    id: problem-name
+    id: circuit
     attributes:
-      label: Problem Name
-      description: Name of the problem instance you're solving
-      placeholder: e.g., "Operator Loschmidt Echo (49x2400)"
-    validations:
-      required: true
-
-  - type: dropdown
-    id: error-control-method
-    attributes:
-      label: Error Control Method
-      description: Which error control approach did you use?
-      options:
-        - Quantum Error Correction (QEC)
-        - Quantum Error Mitigation (QEM)
-        - Post-Selected Error Detection
-    validations:
-      required: true
-
-  - type: textarea
-    id: problem-description
-    attributes:
-      label: Problem Description
-      description: Describe the problem instance (qubits, circuit topology, depth, observable definition)
-      placeholder: |
-        - Number of qubits:
-        - Circuit topology:
-        - Circuit depth:
-        - Observable definition:
-    validations:
-      required: true
-
-  - type: textarea
-    id: observable-value
-    attributes:
-      label: Observable Estimation Result
-      description: Report the expectation value with rigorous error bars
-      placeholder: |
-        - Expectation value:
-        - Error bounds: ±
-        - Confidence level:
-    validations:
-      required: true
-
-  - type: textarea
-    id: quantum-runtime
-    attributes:
-      label: Quantum Runtime & Hardware
-      description: Specify quantum execution time and hardware details
-      placeholder: |
-        - Quantum runtime:
-        - Quantum hardware:
-        - Number of shots:
-    validations:
-      required: true
-
-  - type: textarea
-    id: classical-baseline
-    attributes:
-      label: Classical Baseline (if applicable)
-      description: Provide classical comparison if available
-      placeholder: |
-        - Classical method:
-        - Classical runtime:
-        - Classical hardware:
-    validations:
-      required: false
-
-  - type: textarea
-    id: validation-evidence
-    attributes:
-      label: Validation Evidence
-      description: How do you prove the error bounds on the reported observable?
-      placeholder: Provide mathematical proof, experimental validation, or references demonstrating provable error bounds
+      label: Circuit
+      description: The problem instance this submission addresses
+      placeholder: e.g., "operator_loschmidt_echo_49x2400"
     validations:
       required: true
 
   - type: input
-    id: circuit-file
+    id: observable-value
     attributes:
-      label: Circuit File Path
-      description: Path to the QASM circuit file in the repository
-      placeholder: problems/observable_estimations/your_circuit.qasm
+      label: Observable Value
+      description: The measured observable expectation value
+      placeholder: e.g., "0.732"
+    validations:
+      required: true
+
+  - type: input
+    id: bounds-low
+    attributes:
+      label: Bounds (Low)
+      description: Lower error bound (default -1 if not provided)
+      placeholder: e.g., "-0.05"
+    validations:
+      required: false
+
+  - type: input
+    id: bounds-high
+    attributes:
+      label: Bounds (High)
+      description: Upper error bound (default +1 if not provided)
+      placeholder: e.g., "+0.05"
     validations:
       required: false
 
   - type: textarea
-    id: artifacts
+    id: method
     attributes:
-      label: Additional Artifacts & Links
-      description: Links to code repositories, papers, data files, or other supporting materials
+      label: Method
+      description: Link to paper, code repository, or detailed explanation of the method (required for verification)
       placeholder: |
-        - Code repository:
-        - Paper/preprint:
-        - Data files:
-        - Documentation:
+        Provide at least one of:
+        - Paper/preprint: https://arxiv.org/abs/...
+        - Code repository: https://github.com/...
+        - Method explanation: Detailed description of the approach
     validations:
       required: true
 
-  - type: textarea
-    id: reproducibility
+  - type: input
+    id: institution
     attributes:
-      label: Reproducibility Instructions
-      description: Step-by-step instructions for reproducing your results
-      placeholder: |
-        1. Setup environment...
-        2. Run experiment...
-        3. Verify results...
+      label: Institution
+      description: Your institution or organization
+      placeholder: e.g., "IBM Quantum"
+    validations:
+      required: true
+
+  - type: input
+    id: quantum-time
+    attributes:
+      label: Quantum Time (seconds)
+      description: Quantum execution time in seconds
+      placeholder: e.g., "5.2"
+    validations:
+      required: true
+
+  - type: input
+    id: classical-time
+    attributes:
+      label: Classical Time (seconds)
+      description: Classical computation time in seconds
+      placeholder: e.g., "9000"
+    validations:
+      required: false
+
+  - type: input
+    id: quantum-hardware
+    attributes:
+      label: Quantum Hardware
+      description: Quantum hardware specification
+      placeholder: e.g., "IBM Heron r2"
+    validations:
+      required: true
+
+  - type: input
+    id: classical-hardware
+    attributes:
+      label: Classical Hardware
+      description: Classical hardware specification
+      placeholder: e.g., "AMD EPYC 7763, 128 cores"
+    validations:
+      required: false
+
+  - type: input
+    id: submission-date
+    attributes:
+      label: Submission Date
+      description: Date of submission (YYYY-MM-DD)
+      placeholder: "2025-10-29"
     validations:
       required: true
 
   - type: checkboxes
-    id: submission-checklist
+    id: validation
     attributes:
-      label: Submission Checklist
-      description: Please confirm the following before submitting
+      label: Validation
+      description: Verification checklist for Path 1 (provable error bounds)
       options:
-        - label: I have provided rigorous error bounds with mathematical justification
+        - label: Has provable error bounds
           required: true
-        - label: I have included all necessary artifacts for reproducibility
+        - label: Method documentation provided (paper/code/explanation)
           required: true
-        - label: I have documented hardware specifications and runtime metrics
-          required: true
-        - label: I have reviewed the pathway criteria at https://quantum-advantage-pathways.github.io/observable_estimations.html
+        - label: Results are reproducible
           required: true
 
   - type: markdown

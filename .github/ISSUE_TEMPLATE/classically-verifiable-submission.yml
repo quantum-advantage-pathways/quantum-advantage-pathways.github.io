@@ -66,18 +66,18 @@ body:
   - type: input
     id: quantum-time
     attributes:
-      label: Quantum Time
-      description: Quantum execution time
-      placeholder: e.g., "5.2 seconds"
+      label: Quantum Time (seconds)
+      description: Quantum execution time in seconds
+      placeholder: e.g., "5.2"
     validations:
       required: true
 
   - type: input
     id: classical-time
     attributes:
-      label: Classical Time
-      description: Classical computation time
-      placeholder: e.g., "2.5 hours"
+      label: Classical Time (seconds)
+      description: Classical computation time in seconds
+      placeholder: e.g., "9000"
     validations:
       required: false
 
