@@ -1,0 +1,187 @@
+name: ✅ Classically Verifiable Problems Submission
+description: Submit a problem solution for the Classically Verifiable pathway - When quantum outputs are hard to find but easy to check
+title: "[Verifiable] "
+labels: ["pathway: classically-verifiable", "submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## ✅ Classically Verifiable Problems Pathway
+
+        Thank you for submitting a solution to the **Classically Verifiable Problems** pathway!
+
+        This pathway focuses on solutions that are hard to generate classically but easy to verify. Your submission should demonstrate quantum generation with efficient classical verification.
+
+        Please provide detailed information about your submission below.
+
+  - type: input
+    id: problem-name
+    attributes:
+      label: Problem Name
+      description: Name of the problem instance you're solving
+      placeholder: e.g., "Peaked Random Circuit · 53 qubits"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: verification-approach
+    attributes:
+      label: Verification Approach
+      description: Which type of verifiable problem are you solving?
+      options:
+        - Sampling Problems with Structure
+        - Algebraic Problems
+        - Observable Measurements
+        - Other (specify in description)
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem-description
+    attributes:
+      label: Problem Description
+      description: Describe the problem instance (qubits, circuit structure, depth, scoring method)
+      placeholder: |
+        - Number of qubits:
+        - Circuit structure/topology:
+        - Circuit depth:
+        - Scoring method:
+        - Problem type (e.g., factorization, optimization, sampling):
+    validations:
+      required: true
+
+  - type: textarea
+    id: quantum-solution
+    attributes:
+      label: Quantum Solution
+      description: Describe your quantum solution and results
+      placeholder: |
+        - Solution output:
+        - Sample quality/fidelity:
+        - Success probability:
+    validations:
+      required: true
+
+  - type: textarea
+    id: verification-method
+    attributes:
+      label: Classical Verification Method
+      description: How is the solution verified classically?
+      placeholder: |
+        Describe the verification procedure:
+        - Verification algorithm:
+        - Verification complexity:
+        - Held-out samples used:
+        - Verification result/score:
+    validations:
+      required: true
+
+  - type: textarea
+    id: quantum-runtime
+    attributes:
+      label: Quantum Runtime & Hardware
+      description: Specify quantum execution details
+      placeholder: |
+        - Quantum runtime:
+        - Quantum hardware:
+        - Number of qubits used:
+        - Circuit depth:
+        - Number of shots/samples:
+    validations:
+      required: true
+
+  - type: textarea
+    id: classical-baseline
+    attributes:
+      label: Classical Baseline Comparison
+      description: Compare quantum generation with classical attempts
+      placeholder: |
+        - Classical method(s) attempted:
+        - Classical success rate:
+        - Classical runtime:
+        - Classical hardware:
+        - Advantage demonstration:
+    validations:
+      required: true
+
+  - type: textarea
+    id: scoring-results
+    attributes:
+      label: Scoring Results
+      description: How does your solution score against the classical oracle?
+      placeholder: |
+        - Score/metric:
+        - Oracle method:
+        - Statistical significance:
+    validations:
+      required: true
+
+  - type: input
+    id: circuit-file
+    attributes:
+      label: Circuit File Path
+      description: Path to the circuit file in the repository
+      placeholder: problems/classically_verifiable/your_circuit.qasm
+    validations:
+      required: false
+
+  - type: textarea
+    id: artifacts
+    attributes:
+      label: Additional Artifacts & Links
+      description: Links to code repositories, papers, data files, or other supporting materials
+      placeholder: |
+        - Code repository:
+        - Paper/preprint:
+        - Data files:
+        - Verification code:
+        - Documentation:
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproducibility
+    attributes:
+      label: Reproducibility Instructions
+      description: Step-by-step instructions for reproducing and verifying your results
+      placeholder: |
+        1. Setup environment...
+        2. Generate quantum solution...
+        3. Run classical verification...
+        4. Compare with baselines...
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: submission-checklist
+    attributes:
+      label: Submission Checklist
+      description: Please confirm the following before submitting
+      options:
+        - label: I have provided a clear classical verification method
+          required: true
+        - label: I have demonstrated quantum advantage over classical generation
+          required: true
+        - label: I have included scoring against a classical oracle with held-out samples
+          required: true
+        - label: I have included all necessary artifacts for reproducibility
+          required: true
+        - label: I have documented hardware specifications and runtime metrics
+          required: true
+        - label: I have reviewed the pathway criteria at https://quantum-advantage-pathways.github.io/classically_verifiable.html
+          required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+
+        ### What happens next?
+
+        Maintainers will review your submission for:
+        - ✅ Reproducibility
+        - ✅ Compliance with validation criteria (efficient verification)
+        - ✅ Data fidelity and traceability
+        - ✅ Transparent documentation of assumptions and uncertainties
+
+        Thank you for contributing to Quantum Advantage Pathways! 🚀

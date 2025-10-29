@@ -1,0 +1,158 @@
+name: 📊 Observable Estimations Submission
+description: Submit a problem solution for the Observable Estimations pathway - Trust through rigorous error control
+title: "[Observable Estimations] "
+labels: ["pathway: observable-estimations", "submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## 📊 Observable Estimations Pathway
+
+        Thank you for submitting a solution to the **Observable Estimations** pathway!
+
+        This pathway focuses on expectation-value experiments with mathematically grounded error bars. Your submission should demonstrate rigorous error control through QEC, QEM, or Post-Selected Error Detection.
+
+        Please provide detailed information about your submission below.
+
+  - type: input
+    id: problem-name
+    attributes:
+      label: Problem Name
+      description: Name of the problem instance you're solving
+      placeholder: e.g., "Operator Loschmidt Echo (49x2400)"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: error-control-method
+    attributes:
+      label: Error Control Method
+      description: Which error control approach did you use?
+      options:
+        - Quantum Error Correction (QEC)
+        - Quantum Error Mitigation (QEM)
+        - Post-Selected Error Detection
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem-description
+    attributes:
+      label: Problem Description
+      description: Describe the problem instance (qubits, circuit topology, depth, observable definition)
+      placeholder: |
+        - Number of qubits:
+        - Circuit topology:
+        - Circuit depth:
+        - Observable definition:
+    validations:
+      required: true
+
+  - type: textarea
+    id: observable-value
+    attributes:
+      label: Observable Estimation Result
+      description: Report the expectation value with rigorous error bars
+      placeholder: |
+        - Expectation value:
+        - Error bounds: ±
+        - Confidence level:
+    validations:
+      required: true
+
+  - type: textarea
+    id: quantum-runtime
+    attributes:
+      label: Quantum Runtime & Hardware
+      description: Specify quantum execution time and hardware details
+      placeholder: |
+        - Quantum runtime:
+        - Quantum hardware:
+        - Number of shots:
+    validations:
+      required: true
+
+  - type: textarea
+    id: classical-baseline
+    attributes:
+      label: Classical Baseline (if applicable)
+      description: Provide classical comparison if available
+      placeholder: |
+        - Classical method:
+        - Classical runtime:
+        - Classical hardware:
+    validations:
+      required: false
+
+  - type: textarea
+    id: validation-evidence
+    attributes:
+      label: Validation Evidence
+      description: How do you prove the error bounds on the reported observable?
+      placeholder: Provide mathematical proof, experimental validation, or references demonstrating provable error bounds
+    validations:
+      required: true
+
+  - type: input
+    id: circuit-file
+    attributes:
+      label: Circuit File Path
+      description: Path to the QASM circuit file in the repository
+      placeholder: problems/observable_estimations/your_circuit.qasm
+    validations:
+      required: false
+
+  - type: textarea
+    id: artifacts
+    attributes:
+      label: Additional Artifacts & Links
+      description: Links to code repositories, papers, data files, or other supporting materials
+      placeholder: |
+        - Code repository:
+        - Paper/preprint:
+        - Data files:
+        - Documentation:
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproducibility
+    attributes:
+      label: Reproducibility Instructions
+      description: Step-by-step instructions for reproducing your results
+      placeholder: |
+        1. Setup environment...
+        2. Run experiment...
+        3. Verify results...
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: submission-checklist
+    attributes:
+      label: Submission Checklist
+      description: Please confirm the following before submitting
+      options:
+        - label: I have provided rigorous error bounds with mathematical justification
+          required: true
+        - label: I have included all necessary artifacts for reproducibility
+          required: true
+        - label: I have documented hardware specifications and runtime metrics
+          required: true
+        - label: I have reviewed the pathway criteria at https://quantum-advantage-pathways.github.io/observable_estimations.html
+          required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+
+        ### What happens next?
+
+        Maintainers will review your submission for:
+        - ✅ Reproducibility
+        - ✅ Compliance with validation criteria
+        - ✅ Data fidelity and traceability
+        - ✅ Transparent documentation of assumptions and uncertainties
+
+        Thank you for contributing to Quantum Advantage Pathways! 🚀

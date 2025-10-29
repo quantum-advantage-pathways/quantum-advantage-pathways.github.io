@@ -1,0 +1,168 @@
+name: ⚛️ Variational Problems Submission
+description: Submit a problem solution for the Variational Problems pathway - Certifiable quantum solutions via the variational principle
+title: "[Variational] "
+labels: ["pathway: variational-problems", "submission"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        ## ⚛️ Variational Problems Pathway
+
+        Thank you for submitting a solution to the **Variational Problems** pathway!
+
+        This pathway focuses on guaranteed solution bounds and benchmarking against classical methods. Your submission should demonstrate variational bounds (energy values as upper bounds to true ground-state energy).
+
+        Please provide detailed information about your submission below.
+
+  - type: input
+    id: problem-name
+    attributes:
+      label: Problem Name
+      description: Name of the Hamiltonian or problem instance you're solving
+      placeholder: e.g., "LiH Molecule Ground State Energy"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: variational-method
+    attributes:
+      label: Variational Method
+      description: Which variational algorithm did you use?
+      options:
+        - Quantum Phase Estimation (QPE)
+        - Variational Quantum Eigensolver (VQE)
+        - Sample-based Quantum Diagonalization (SQD)
+        - Sample-based Krylov Quantum Diagonalization (SKQD)
+        - Other (specify in description)
+    validations:
+      required: true
+
+  - type: textarea
+    id: problem-description
+    attributes:
+      label: Problem Description
+      description: Describe the problem instance (active orbitals, ansatz structure, symmetry properties, reference state)
+      placeholder: |
+        - Active orbitals:
+        - Ansatz structure:
+        - Symmetry properties:
+        - Reference state:
+    validations:
+      required: true
+
+  - type: textarea
+    id: energy-result
+    attributes:
+      label: Energy Estimation Result
+      description: Report the ground-state energy upper bound with uncertainty
+      placeholder: |
+        - Energy value:
+        - Statistical uncertainty:
+        - Energy units:
+    validations:
+      required: true
+
+  - type: textarea
+    id: quantum-runtime
+    attributes:
+      label: Quantum Runtime & Hardware
+      description: Specify quantum execution details
+      placeholder: |
+        - Quantum runtime:
+        - Quantum hardware:
+        - Number of qubits used:
+        - Circuit depth:
+        - Number of iterations/shots:
+    validations:
+      required: true
+
+  - type: textarea
+    id: classical-comparison
+    attributes:
+      label: Classical Comparison
+      description: Compare your quantum results with classical methods
+      placeholder: |
+        - Classical method(s):
+        - Classical energy result:
+        - Classical runtime:
+        - Classical hardware:
+        - Advantage metric:
+    validations:
+      required: true
+
+  - type: textarea
+    id: variational-proof
+    attributes:
+      label: Variational Principle Demonstration
+      description: How do you prove your method is variational and the energy is an upper bound?
+      placeholder: Provide mathematical justification, references, or experimental evidence demonstrating the variational property
+    validations:
+      required: true
+
+  - type: input
+    id: hamiltonian-file
+    attributes:
+      label: Hamiltonian File Path
+      description: Path to the problem definition file in the repository
+      placeholder: problems/variational_problems/your_hamiltonian.qasm
+    validations:
+      required: false
+
+  - type: textarea
+    id: artifacts
+    attributes:
+      label: Additional Artifacts & Links
+      description: Links to code repositories, papers, data files, or other supporting materials
+      placeholder: |
+        - Code repository:
+        - Paper/preprint:
+        - Data files:
+        - Hamiltonian specification:
+        - Documentation:
+    validations:
+      required: true
+
+  - type: textarea
+    id: reproducibility
+    attributes:
+      label: Reproducibility Instructions
+      description: Step-by-step instructions for reproducing your results
+      placeholder: |
+        1. Setup environment...
+        2. Define Hamiltonian...
+        3. Run variational optimization...
+        4. Verify results...
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: submission-checklist
+    attributes:
+      label: Submission Checklist
+      description: Please confirm the following before submitting
+      options:
+        - label: I have demonstrated that my method satisfies the variational principle
+          required: true
+        - label: I have provided comparison with classical baseline methods
+          required: true
+        - label: I have included all necessary artifacts for reproducibility
+          required: true
+        - label: I have documented hardware specifications and runtime metrics
+          required: true
+        - label: I have reviewed the pathway criteria at https://quantum-advantage-pathways.github.io/variational_problems.html
+          required: true
+
+  - type: markdown
+    attributes:
+      value: |
+        ---
+
+        ### What happens next?
+
+        Maintainers will review your submission for:
+        - ✅ Reproducibility
+        - ✅ Compliance with validation criteria (variational property)
+        - ✅ Data fidelity and traceability
+        - ✅ Transparent documentation of assumptions and uncertainties
+
+        Thank you for contributing to Quantum Advantage Pathways! 🚀
