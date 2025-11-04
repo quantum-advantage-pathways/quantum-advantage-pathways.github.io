@@ -49,7 +49,7 @@ jobs:
 
             // Parse issue body to detect which path submission checkbox is checked
             let detectedPath = null;
-            let pathSubmissionLabel = null;
+            let pathLabel = null;
 
             // Look for checked "Path N submission" in the issue body
             const path1Match = issueBody.match(/- \[x\] Path 1 submission/i);
@@ -58,13 +58,13 @@ jobs:
 
             if (path1Match) {
               detectedPath = 1;
-              pathSubmissionLabel = 'Path 1 submission';
+              pathLabel = 'Path 1';
             } else if (path2Match) {
               detectedPath = 2;
-              pathSubmissionLabel = 'Path 2 submission';
+              pathLabel = 'Path 2';
             } else if (path3Match) {
               detectedPath = 3;
-              pathSubmissionLabel = 'Path 3 submission';
+              pathLabel = 'Path 3';
             }
 
             if (!detectedPath) {
@@ -73,17 +73,17 @@ jobs:
               // Fallback to label-based detection
               if (labels.includes('pathway: observable-estimations')) {
                 detectedPath = 1;
-                pathSubmissionLabel = 'Path 1 submission';
+                pathLabel = 'Path 1';
               } else if (labels.includes('pathway: variational-problems')) {
                 detectedPath = 2;
-                pathSubmissionLabel = 'Path 2 submission';
+                pathLabel = 'Path 2';
               } else if (labels.includes('pathway: classically-verifiable')) {
                 detectedPath = 3;
-                pathSubmissionLabel = 'Path 3 submission';
+                pathLabel = 'Path 3';
               }
             }
 
-            if (!pathSubmissionLabel) {
+            if (!pathLabel) {
               await github.rest.issues.createComment({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
@@ -93,19 +93,19 @@ jobs:
               return;
             }
 
-            console.log(`Detected: ${pathSubmissionLabel}`);
+            console.log(`Detected: ${pathLabel}`);
 
-            // Apply the path submission label if not already present
-            if (!labels.includes(pathSubmissionLabel)) {
+            // Apply the path label if not already present
+            if (!labels.includes(pathLabel)) {
               await github.rest.issues.addLabels({
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: issue.number,
-                labels: [pathSubmissionLabel]
+                labels: [pathLabel]
               });
-              console.log(`Applied label: ${pathSubmissionLabel}`);
+              console.log(`Applied label: ${pathLabel}`);
             } else {
-              console.log(`Label already exists: ${pathSubmissionLabel}`);
+              console.log(`Label already exists: ${pathLabel}`);
             }
 
             // Determine pathway directory based on detected path
@@ -169,7 +169,7 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: issue.number,
-                body: `✅ **Validation Success**\n\n**Detected Path:** ${pathSubmissionLabel} ✓\n**Circuit:** \`${circuitId}\` exists in the repository ✓\n\n**Applied Labels:**\n- \`${pathSubmissionLabel}\` (detected from checkbox)\n- \`validated\`\n\n**Next Steps:**\n1. Maintainers will review your submission for reproducibility and compliance with validation criteria\n2. Ensure all required fields are filled out\n3. Provide links to papers/code for method verification\n\nThank you for your contribution! 🚀`
+                body: `✅ **Validation Success**\n\n**Detected Path:** ${pathLabel} ✓\n**Circuit:** \`${circuitId}\` exists in the repository ✓\n\n**Applied Labels:**\n- \`${pathLabel}\` (detected from checkbox)\n- \`validated\`\n\n**Next Steps:**\n1. Maintainers will review your submission for reproducibility and compliance with validation criteria\n2. Ensure all required fields are filled out\n3. Provide links to papers/code for method verification\n\nThank you for your contribution! 🚀`
               });
 
               // Add verified label
@@ -184,7 +184,7 @@ jobs:
                 owner: context.repo.owner,
                 repo: context.repo.repo,
                 issue_number: issue.number,
-                body: `⚠️ **Validation Warning**\n\n**Detected Path:** ${pathSubmissionLabel} ✓\n**Circuit:** \`${circuitId}\` not found ⚠️\n\n**Applied Labels:**\n- \`${pathSubmissionLabel}\` (detected from checkbox)\n- \`needs-review\`\n\n**Possible Issues:**\n- The circuit ID might be misspelled\n- The circuit might not exist in \`problems/${pathway}/\` directory\n- You may be submitting to the wrong pathway\n\n**What to do:**\n1. Verify the circuit ID is correct\n2. Check the available circuits at: https://quantum-advantage-pathways.github.io/\n3. If this is a new problem, you may need to add the circuit definition first\n4. Ensure you selected the correct pathway template`
+                body: `⚠️ **Validation Warning**\n\n**Detected Path:** ${pathLabel} ✓\n**Circuit:** \`${circuitId}\` not found ⚠️\n\n**Applied Labels:**\n- \`${pathLabel}\` (detected from checkbox)\n- \`needs-review\`\n\n**Possible Issues:**\n- The circuit ID might be misspelled\n- The circuit might not exist in \`problems/${pathway}/\` directory\n- You may be submitting to the wrong pathway\n\n**What to do:**\n1. Verify the circuit ID is correct\n2. Check the available circuits at: https://quantum-advantage-pathways.github.io/\n3. If this is a new problem, you may need to add the circuit definition first\n4. Ensure you selected the correct pathway template`
               });
 
               // Add needs-review label

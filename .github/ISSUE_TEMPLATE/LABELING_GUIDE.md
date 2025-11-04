@@ -18,9 +18,9 @@ GitHub Actions workflow automatically adds:
 
 | Detected Pathway | Path Label Added |
 |-----------------|------------------|
-| `pathway: observable-estimations` | **`Path 1 submission`** |
-| `pathway: variational-problems` | **`Path 2 submission`** |
-| `pathway: classically-verifiable` | **`Path 3 submission`** |
+| `pathway: observable-estimations` | **`Path 1`** |
+| `pathway: variational-problems` | **`Path 2`** |
+| `pathway: classically-verifiable` | **`Path 3`** |
 
 Plus validation labels:
 - ✅ `validated` - Circuit exists, all validations passed
@@ -35,9 +35,9 @@ Plus validation labels:
 - `pathway: classically-verifiable` - Technical pathway identifier
 
 ### Human-Readable Path Labels
-- `Path 1 submission` - Observable Estimations submission
-- `Path 2 submission` - Variational Problems submission
-- `Path 3 submission` - Classically Verifiable submission
+- `Path 1` - Observable Estimations submission
+- `Path 2` - Variational Problems submission
+- `Path 3` - Classically Verifiable submission
 
 ### Status Labels
 - `submission` - Marks this as a submission issue
@@ -52,23 +52,23 @@ When a **Path 2 - Variational Problems** submission is created and validated, it
 ```
 ✅ pathway: variational-problems    (from template)
 ✅ submission                        (from template)
-✅ Path 2 submission                 (from workflow)
+✅ Path 2                            (from workflow)
 ✅ validated                         (from workflow - if passes)
 ```
 
 ## For Filtering Issues
 
 ### Find all Path 1 submissions:
-- Filter by: `label:"Path 1 submission"`
+- Filter by: `label:"Path 1"`
 
 ### Find all Path 2 submissions that need review:
-- Filter by: `label:"Path 2 submission" label:"needs-review"`
+- Filter by: `label:"Path 2" label:"needs-review"`
 
 ### Find all validated submissions:
 - Filter by: `label:"validated"`
 
 ### Find all incomplete Path 3 submissions:
-- Filter by: `label:"Path 3 submission" label:"incomplete"`
+- Filter by: `label:"Path 3" label:"incomplete"`
 
 ## Why Two Types of Pathway Labels?
 

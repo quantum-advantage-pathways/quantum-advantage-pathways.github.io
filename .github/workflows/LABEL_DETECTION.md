@@ -23,7 +23,7 @@ The validation workflow now **intelligently detects** which pathway an issue bel
 
 When a path is detected, the workflow automatically:
 
-✅ **Applies the label** `Path N submission` to the issue
+✅ **Applies the label** `Path N` to the issue (where N = 1, 2, or 3)
 ✅ **Posts a comment** showing which path was detected
 ✅ **Validates the circuit** exists in the correct pathway directory
 ✅ **Adds status labels**: `validated` or `needs-review`
@@ -47,8 +47,8 @@ lih_molecule
 ```
 
 ### Workflow Detects:
-1. ✅ Finds `- [x] Path 2 submission` in issue body
-2. ✅ Applies label: `Path 2 submission`
+1. ✅ Finds `- [x] Path 2 submission` checkbox in issue body
+2. ✅ Applies label: `Path 2`
 3. ✅ Maps to pathway: `variational_problems`
 4. ✅ Checks if circuit exists in `problems/variational_problems/`
 5. ✅ Posts validation result comment
@@ -64,8 +64,8 @@ lih_molecule
 - Uses template labels as backup
 
 ### 🔍 Easy to Filter
-- Issues automatically tagged with human-readable labels
-- Filter by: `label:"Path 1 submission"`, `label:"Path 2 submission"`, etc.
+- Issues automatically tagged with simple, readable labels
+- Filter by: `label:"Path 1"`, `label:"Path 2"`, `label:"Path 3"`
 
 ### 🤖 Fully Automated
 - No manual labeling required
@@ -92,16 +92,16 @@ To find submissions by path:
 
 ```
 # All Path 1 submissions
-label:"Path 1 submission"
+label:"Path 1"
 
 # Path 2 submissions needing review
-label:"Path 2 submission" label:"needs-review"
+label:"Path 2" label:"needs-review"
 
 # All validated submissions
 label:"validated"
 
 # Path 3 incomplete submissions
-label:"Path 3 submission" label:"incomplete"
+label:"Path 3" label:"incomplete"
 ```
 
 ## Technical Details
@@ -123,9 +123,9 @@ label:"Path 3 submission" label:"incomplete"
 ```
 
 ### Applied Labels:
-- `Path 1 submission` → Observable Estimations
-- `Path 2 submission` → Variational Problems
-- `Path 3 submission` → Classically Verifiable
+- `Path 1` → Observable Estimations
+- `Path 2` → Variational Problems
+- `Path 3` → Classically Verifiable
 
 ## Troubleshooting
 
