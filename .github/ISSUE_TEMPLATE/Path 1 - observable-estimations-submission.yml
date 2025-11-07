@@ -36,7 +36,7 @@ body:
     id: circuit
     attributes:
       label: Circuit
-      description: The problem instance this submission addresses. 
+      description: The problem instance this submission addresses 
       placeholder: e.g., "operator_loschmidt_echo_49x2400"
     validations:
       required: true
