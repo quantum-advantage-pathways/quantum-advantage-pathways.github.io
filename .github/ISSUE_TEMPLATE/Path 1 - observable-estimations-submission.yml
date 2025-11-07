@@ -1,5 +1,5 @@
 name: 📊 Path 1 - Observable Estimations Submission
-description: Submit a problem solution for the Observable Estimations pathway - Trust through rigorous error control
+description: Submit a problem solution to the Observable Estimations Tracker - Trust through rigorous error control
 title: "[Observable Estimations] "
 labels: ["pathway: observable-estimations", "submission"]
 body:
@@ -8,7 +8,7 @@ body:
       value: |
         ## 📊 Path 1 - Observable Estimations Pathway
 
-        Thank you for submitting a solution to the **Observable Estimations** pathway!
+        Thank you for submitting a solution to the **Observable Estimations Tracker**!
 
         This pathway focuses on expectation-value experiments with mathematically grounded error bars. Your submission should demonstrate rigorous error control through techniques like QEC, QEM, or Post-Selected Error Detection.
 
