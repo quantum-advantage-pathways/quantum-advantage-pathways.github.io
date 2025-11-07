@@ -1,14 +1,14 @@
 name: ⚛️ Path 2 - Variational Problems Submission
-description: Submit a problem solution for the Variational Problems pathway - Certifiable quantum solutions via the variational principle
+description: Submit a problem solution to the Variational Problems Tracker - Certifiable quantum solutions via the variational principle
 title: "[Variational] "
 labels: ["pathway: variational-problems", "submission"]
 body:
   - type: markdown
     attributes:
       value: |
-        ## ⚛️ Path 2 - Variational Problems Pathway
+        ## ⚛️ Path 2 - Variational Problems
 
-        Thank you for submitting a solution to the **Variational Problems** pathway!
+        Thank you for submitting a solution to the **Variational Problems Tracker**!
 
         This pathway focuses on guaranteed solution bounds and benchmarking against classical methods. Your submission should demonstrate variational bounds (energy values as upper bounds to true ground-state energy).
 
@@ -18,10 +18,19 @@ body:
     id: submission-Path
     attributes:
       label: Check the Path submission
-      description: Validate that this submission is for the Path 2 - Variational Problems Pathway
+      description: Verify that your submission is for the Path 2 - Variational Problems Tracker
       options:
         - label: Path 2 submission
           required: true
+
+  - type: input
+    id: name
+    attributes:
+      label: Name
+      description: Please provide a unique and identifiable name for your submission
+      placeholder: 
+    validations:
+      required: true
 
   - type: input
     id: circuit
@@ -36,33 +45,42 @@ body:
     id: energy
     attributes:
       label: Energy
-      description: The ground-state energy value (upper bound)
+      description: The ground-state energy value (upper bound) in UNIT OF MEASURE NEEDED. 
       placeholder: e.g., "-7.8823"
     validations:
       required: true
 
   - type: input
-    id: bounds-low
+    id: error-bounds-low
     attributes:
-      label: Bounds (Low)
+      label: Error bounds (Low)
       description: Lower error bound (optional, default -1 if not provided)
       placeholder: e.g., "-0.001"
     validations:
       required: false
 
   - type: input
-    id: bounds-high
+    id: error-bounds-high
     attributes:
-      label: Bounds (High)
+      label: Error bounds (High)
       description: Upper error bound (optional, default +1 if not provided)
       placeholder: e.g., "+0.001"
     validations:
       required: false
 
-  - type: textarea
-    id: method
+  - type: input
+    id: method-name
     attributes:
       label: Method
+      description: Name for the method used in submission
+      placeholder: e.g., "SQD"
+    validations:
+      required: true
+
+  - type: textarea
+    id: method-proof
+    attributes:
+      label: Method proof
       description: Link to paper, code repository, or detailed explanation of the method (required for verification)
       placeholder: |
         Provide at least one of:
@@ -73,18 +91,18 @@ body:
       required: true
 
   - type: input
-    id: institution
+    id: institutions
     attributes:
-      label: Institution
-      description: Your institution or organization
-      placeholder: e.g., "IBM Quantum"
+      label: Institutions
+      description: The institution(s) or organization(s) involved in the submission, separated by commas
+      placeholder: 
     validations:
       required: true
 
   - type: input
     id: quantum-time
     attributes:
-      label: Quantum Time (seconds)
+      label: Quantum time (seconds)
       description: Quantum execution time in seconds
       placeholder: e.g., "5.2"
     validations:
@@ -93,7 +111,7 @@ body:
   - type: input
     id: classical-time
     attributes:
-      label: Classical Time (seconds)
+      label: Classical time (seconds)
       description: Classical computation time in seconds
       placeholder: e.g., "9000"
     validations:
@@ -102,7 +120,7 @@ body:
   - type: input
     id: quantum-hardware
     attributes:
-      label: Quantum Hardware
+      label: Quantum hardware
       description: Quantum hardware specification
       placeholder: e.g., "IBM Heron r2"
     validations:
@@ -111,7 +129,7 @@ body:
   - type: input
     id: classical-hardware
     attributes:
-      label: Classical Hardware
+      label: Classical hardware
       description: Classical hardware specification
       placeholder: e.g., "AMD EPYC 7763, 128 cores"
     validations:
@@ -120,24 +138,12 @@ body:
   - type: input
     id: submission-date
     attributes:
-      label: Submission Date
+      label: Submission date
       description: Date of submission (YYYY-MM-DD)
       placeholder: "2025-10-29"
     validations:
       required: true
 
-  - type: checkboxes
-    id: validation
-    attributes:
-      label: Validation
-      description: Verification checklist for Path 2 (method is variational)
-      options:
-        - label: Method is variational (energy is upper bound)
-          required: true
-        - label: Method documentation provided (paper/code/explanation)
-          required: true
-        - label: Results are reproducible
-          required: true
 
   - type: markdown
     attributes:
