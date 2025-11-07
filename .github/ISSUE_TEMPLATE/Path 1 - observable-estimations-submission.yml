@@ -10,7 +10,7 @@ body:
 
         Thank you for submitting a solution to the **Observable Estimations** pathway!
 
-        This pathway focuses on expectation-value experiments with mathematically grounded error bars. Your submission should demonstrate rigorous error control through QEC, QEM, or Post-Selected Error Detection.
+        This pathway focuses on expectation-value experiments with mathematically grounded error bars. Your submission should demonstrate rigorous error control through techniques like QEC, QEM, or Post-Selected Error Detection.
 
         Please provide detailed information about your submission below.
 
@@ -24,10 +24,19 @@ body:
           required: true
 
   - type: input
+    id: name
+    attributes:
+      label: Name
+      description: Please provide a unique and identifiable name for your submission
+      placeholder: 
+    validations:
+      required: true
+
+  - type: input
     id: circuit
     attributes:
       label: Circuit
-      description: The problem instance this submission addresses
+      description: The problem instance this submission addresses. 
       placeholder: e.g., "operator_loschmidt_echo_49x2400"
     validations:
       required: true
@@ -35,34 +44,43 @@ body:
   - type: input
     id: observable-value
     attributes:
-      label: Observable Value
-      description: The measured observable expectation value
+      label: Observable value
+      description: The measured expectation value of the observable
       placeholder: e.g., "0.732"
     validations:
       required: true
 
   - type: input
-    id: bounds-low
+    id: error-bounds-low
     attributes:
-      label: Bounds (Low)
+      label: Error bounds (Low)
       description: Lower error bound (default -1 if not provided)
       placeholder: e.g., "-0.05"
     validations:
       required: false
 
   - type: input
-    id: bounds-high
+    id: error-bounds-high
     attributes:
-      label: Bounds (High)
+      label: Error bounds (High)
       description: Upper error bound (default +1 if not provided)
       placeholder: e.g., "+0.05"
     validations:
       required: false
 
-  - type: textarea
-    id: method
+  - type: input
+    id: method-name
     attributes:
       label: Method
+      description: Name for the method used in submission
+      placeholder: e.g., "Global rescaling"
+    validations:
+      required: true
+      
+  - type: textarea
+    id: method-proof
+    attributes:
+      label: Method proof
       description: Link to paper, code repository, or detailed explanation of the method (required for verification)
       placeholder: |
         Provide at least one of:
@@ -73,18 +91,18 @@ body:
       required: true
 
   - type: input
-    id: institution
+    id: institutions
     attributes:
-      label: Institution
-      description: Your institution or organization
-      placeholder: e.g., "IBM Quantum"
+      label: Institutions
+      description: The institution(s) or organization(s) involved in the submission, separated by commas
+      placeholder: 
     validations:
       required: true
 
   - type: input
     id: quantum-time
     attributes:
-      label: Quantum Time (seconds)
+      label: Quantum time (seconds)
       description: Quantum execution time in seconds
       placeholder: e.g., "5.2"
     validations:
@@ -93,7 +111,7 @@ body:
   - type: input
     id: classical-time
     attributes:
-      label: Classical Time (seconds)
+      label: Classical time (seconds)
       description: Classical computation time in seconds
       placeholder: e.g., "9000"
     validations:
@@ -102,7 +120,7 @@ body:
   - type: input
     id: quantum-hardware
     attributes:
-      label: Quantum Hardware
+      label: Quantum hardware
       description: Quantum hardware specification
       placeholder: e.g., "IBM Heron r2"
     validations:
@@ -111,7 +129,7 @@ body:
   - type: input
     id: classical-hardware
     attributes:
-      label: Classical Hardware
+      label: Classical hardware
       description: Classical hardware specification
       placeholder: e.g., "AMD EPYC 7763, 128 cores"
     validations:
@@ -126,18 +144,6 @@ body:
     validations:
       required: true
 
-  - type: checkboxes
-    id: validation
-    attributes:
-      label: Validation
-      description: Verification checklist for Path 1 (provable error bounds)
-      options:
-        - label: Has provable error bounds
-          required: true
-        - label: Method documentation provided (paper/code/explanation)
-          required: true
-        - label: Results are reproducible
-          required: true
 
   - type: markdown
     attributes:
@@ -152,4 +158,4 @@ body:
         - ✅ Data fidelity and traceability
         - ✅ Transparent documentation of assumptions and uncertainties
 
-        Thank you for contributing to Quantum Advantage Pathways! 🚀
+        Thank you for contributing to the Quantum Advantage Tracker! 🚀
